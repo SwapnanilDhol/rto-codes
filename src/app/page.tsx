@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { trackEvent } from "@/lib/analytics";
+import { siteConfig, siteStats } from "@/lib/site";
 import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
 import { indiaStatesWithDistricts } from "@/data/districts";
@@ -499,16 +500,55 @@ export default function Home() {
       x: direction > 0 ? -10 : 10,
     }),
   };
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        description: siteConfig.description,
+        inLanguage: siteConfig.locale,
+      },
+      {
+        "@type": "WebApplication",
+        name: siteConfig.name,
+        url: siteConfig.url,
+        applicationCategory: "ReferenceApplication",
+        operatingSystem: "Any",
+        description: siteConfig.description,
+      },
+      {
+        "@type": "Dataset",
+        name: "India RTO registration code directory",
+        description: `A browsable directory of ${siteStats.totalCodes} India vehicle registration marks spanning ${siteStats.totalStates} states and union territories.`,
+        url: siteConfig.url,
+        keywords: siteConfig.keywords.join(", "),
+        spatialCoverage: {
+          "@type": "Country",
+          name: "India",
+        },
+      },
+    ],
+  };
 
   return (
     <div className={`h-screen overflow-hidden ${shellClass}`}>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="grid h-full min-h-0 grid-cols-1 lg:grid-cols-[390px_minmax(0,1fr)]">
         <aside className={`relative z-10 flex h-full min-h-0 flex-col border-r shadow-[0_20px_60px_rgba(15,23,42,0.12)] ${panelClass}`}>
           <div className={`border-b px-4 py-4 ${sectionBorderClass}`}>
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-base font-semibold tracking-tight">RTO.codes</p>
+                <h1 className="text-base font-semibold tracking-tight">RTO.codes</h1>
                 <p className={`text-xs ${mutedLabelClass}`}>Search and browse India RTO codes</p>
+                <p className="sr-only">
+                  Search {siteStats.totalCodes} India vehicle registration codes across {siteStats.totalStates} states and union territories.
+                </p>
               </div>
               <button
                 onClick={() => {
