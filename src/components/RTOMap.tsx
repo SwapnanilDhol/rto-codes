@@ -44,7 +44,7 @@ function MapController({ selectedRTO }: { selectedRTO?: RTOFeature | null }) {
   useEffect(() => {
     if (hasFittedInitialBounds.current) return;
     map.fitBounds(INDIA_BOUNDS, {
-      padding: [24, 24],
+      padding: [4, 4],
     });
     hasFittedInitialBounds.current = true;
   }, [map]);
@@ -180,7 +180,15 @@ function RTOMap({
       maxBoundsViscosity={1}
       style={{ minHeight: "100%", minWidth: "100%" }}
     >
-      <TileLayer attribution="" url={tileUrl} subdomains="abcd" maxZoom={19} noWrap />
+      <TileLayer
+        attribution=""
+        url={tileUrl}
+        subdomains="abcd"
+        maxZoom={19}
+        noWrap
+        keepBuffer={8}
+        updateWhenIdle
+      />
       <MapController selectedRTO={selectedRTO} />
       <GeoJSON
         key={theme}

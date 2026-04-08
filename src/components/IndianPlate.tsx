@@ -24,17 +24,6 @@ export default function IndianPlate({
             <stop offset="0%" stopColor="#ffffff" />
             <stop offset="100%" stopColor="#f4f4f5" />
           </linearGradient>
-          <linearGradient id="stickerFill" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f8fafc" />
-            <stop offset="28%" stopColor="#e2e8f0" />
-            <stop offset="65%" stopColor="#94a3b8" />
-            <stop offset="100%" stopColor="#cbd5e1" />
-          </linearGradient>
-          <linearGradient id="stickerSheen" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.88)" />
-            <stop offset="45%" stopColor="rgba(255,255,255,0.18)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
           <linearGradient id="boltFill" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#f8fafc" />
             <stop offset="30%" stopColor="#dbe4ee" />
@@ -91,12 +80,12 @@ export default function IndianPlate({
         </g>
 
         <text
-          x="214"
+          x="176"
           y="119"
           fontSize="72"
           fontWeight="800"
           letterSpacing="0.5"
-          textLength="552"
+          textLength="590"
           lengthAdjust="spacingAndGlyphs"
           fontFamily="Arial, Helvetica, sans-serif"
           fill="#fafafa"
@@ -105,12 +94,12 @@ export default function IndianPlate({
           {displayCode}
         </text>
         <text
-          x="214"
+          x="176"
           y="117"
           fontSize="72"
           fontWeight="800"
           letterSpacing="0.5"
-          textLength="552"
+          textLength="590"
           lengthAdjust="spacingAndGlyphs"
           fontFamily="Arial, Helvetica, sans-serif"
           fill="#111111"
@@ -136,34 +125,6 @@ export default function IndianPlate({
         />
         <path d="M300 58 L364 49" stroke="rgba(15,23,42,0.06)" strokeWidth="1.2" strokeLinecap="round" />
         <path d="M606 132 L654 138" stroke="rgba(15,23,42,0.05)" strokeWidth="1.2" strokeLinecap="round" />
-
-        <g transform="translate(132 60)">
-          <rect x="0" y="0" width="34" height="46" rx="6.5" fill="url(#stickerFill)" opacity="0.98" />
-          <rect x="1.3" y="1.3" width="31.4" height="43.4" rx="5.4" fill="none" stroke="rgba(71,85,105,0.45)" strokeWidth="1" />
-          <path
-            d="M5 10 C13 4, 21 4, 29 10"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            opacity="0.8"
-          />
-          <path
-            d="M6 37 C13 31, 21 31, 28 37"
-            stroke="rgba(51,65,85,0.16)"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-          />
-          <path
-            d="M7 5 L28 41"
-            stroke="url(#stickerSheen)"
-            strokeWidth="6.5"
-            strokeLinecap="round"
-            opacity="0.9"
-          />
-          <circle cx="17" cy="23" r="6.5" fill="rgba(255,255,255,0.22)" stroke="rgba(71,85,105,0.25)" strokeWidth="0.9" />
-          <path d="M14 23h6" stroke="rgba(51,65,85,0.52)" strokeWidth="1" strokeLinecap="round" />
-          <path d="M17 20v6" stroke="rgba(51,65,85,0.52)" strokeWidth="1" strokeLinecap="round" />
-        </g>
 
         <g>
           <circle cx="52" cy="95" r="10" fill="url(#boltFill)" stroke="#334155" strokeWidth="1.4" />

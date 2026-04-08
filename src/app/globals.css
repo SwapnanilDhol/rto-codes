@@ -42,6 +42,17 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
+.dark .leaflet-container,
+.dark .leaflet-pane,
+.dark .leaflet-tile-pane,
+.dark .leaflet-map-pane {
+  background: #020617;
+}
+
+.leaflet-tile-pane {
+  background: transparent;
+}
+
 .leaflet-control-zoom {
   border: none !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
@@ -113,5 +124,5 @@ body {
 
 .leaflet-tile-container img {
   opacity: 1;
-  transition: opacity 0.2s;
+  transition: none;
 }

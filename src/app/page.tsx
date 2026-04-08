@@ -236,8 +236,9 @@ export default function Home() {
   const sidebarScrollRef = useRef<HTMLDivElement | null>(null);
   const lastTrackedSearchRef = useRef("");
   const [query, setQuery] = useState("");
-  const [selectedStateCode, setSelectedStateCode] = useState("MH");
+  const [selectedStateCode, setSelectedStateCode] = useState<string | null>(null);
   const [sidebarView, setSidebarView] = useState<"browse" | "details">("browse");
+  const [sidebarDirection, setSidebarDirection] = useState<1 | -1>(1);
   const [wikiSummary, setWikiSummary] = useState<WikiSummary | null>(null);
   const [wikiLoading, setWikiLoading] = useState(false);
   const [hoveredState, setHoveredState] = useState<HoverOverlayState | null>(null);
@@ -288,7 +289,7 @@ export default function Home() {
     });
   }, [query, states]);
 
-  const selectedState = stateByCode.get(selectedStateCode) ?? states[0];
+  const selectedState = selectedStateCode ? stateByCode.get(selectedStateCode) ?? null : null;
 
   const filteredEntries = useMemo(() => {
     if (!selectedState) return [];
@@ -329,9 +330,15 @@ export default function Home() {
   );
 
   useEffect(() => {
-    if (!selectedState) return;
+    if (!selectedState) {
+      setWikiSummary(null);
+      setWikiLoading(false);
+      return;
+    }
 
-    const wikiTitle = WIKI_TITLE_MAP[selectedState.code] ?? selectedState.name.replace(/\s+/g, "_");
+    const stateSnapshot = selectedState;
+    const wikiTitle =
+      WIKI_TITLE_MAP[stateSnapshot.code] ?? stateSnapshot.name.replace(/\s+/g, "_");
     const controller = new AbortController();
 
     async function loadWikiSummary() {
@@ -345,7 +352,7 @@ export default function Home() {
 
         const payload = await response.json();
         setWikiSummary({
-          title: payload.title ?? selectedState.name,
+          title: payload.title ?? stateSnapshot.name,
           description: payload.description,
           extract: payload.extract,
           thumbnailUrl: payload.thumbnail?.source,
@@ -353,9 +360,9 @@ export default function Home() {
       } catch {
         if (!controller.signal.aborted) {
           setWikiSummary({
-            title: selectedState.name,
+            title: stateSnapshot.name,
             description: "State or union territory in India",
-            extract: `${selectedState.name} has ${selectedState.entries.length} registration codes in the current dataset.`,
+            extract: `${stateSnapshot.name} has ${stateSnapshot.entries.length} registration codes in the current dataset.`,
           });
         }
       } finally {
@@ -396,6 +403,7 @@ export default function Home() {
   }, [query, selectedState, sidebarView]);
 
   const handleStateSelect = useCallback((stateCode: string) => {
+    setSidebarDirection(1);
     setSelectedStateCode(stateCode);
     setQuery("");
     setSidebarView("details");
@@ -462,20 +470,34 @@ export default function Home() {
   const previewPrimaryCode =
     selectedState?.code === "TS"
       ? `${selectedState.code}-28-PK-1310`
-      : `${selectedState?.code ?? "MH"}-28-PK-1310`;
+      : `${selectedState?.code ?? "XX"}-28-PK-1310`;
   const previewAlternateCode = selectedState?.code === "TS" ? "TG-28-PK-1310" : undefined;
   const wikiUrl = selectedState
     ? `https://en.wikipedia.org/wiki/${
         WIKI_TITLE_MAP[selectedState.code] ?? selectedState.name.replace(/\s+/g, "_")
       }`
     : "#";
-  const stateNote = getStateNote(selectedState);
+  const stateNote = getStateNote(selectedState ?? undefined);
   const hoveredStateLookup = hoveredState ? stateByCode.get(hoveredState.stateCode) : null;
   const sidebarTransition = {
     type: "spring" as const,
-    stiffness: 260,
-    damping: 36,
+    stiffness: 340,
+    damping: 34,
     mass: 1,
+  };
+  const sidebarVariants = {
+    enter: (direction: 1 | -1) => ({
+      opacity: 0,
+      x: direction > 0 ? 14 : -14,
+    }),
+    center: {
+      opacity: 1,
+      x: 0,
+    },
+    exit: (direction: 1 | -1) => ({
+      opacity: 0,
+      x: direction > 0 ? -10 : 10,
+    }),
   };
 
   return (
@@ -579,14 +601,16 @@ export default function Home() {
             ref={sidebarScrollRef}
             className="min-h-0 flex-1 overflow-y-auto px-3 py-3 scrollbar-thin"
           >
-            <AnimatePresence mode="wait" initial={false}>
+            <AnimatePresence initial={false} custom={sidebarDirection} mode="sync">
               {sidebarView === "browse" ? (
                 <motion.section
                   key="browse"
                   className="transform-gpu will-change-transform"
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 4 }}
+                  custom={sidebarDirection}
+                  variants={sidebarVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   transition={sidebarTransition}
                 >
                   {query.trim() ? (
@@ -682,15 +706,20 @@ export default function Home() {
                 <motion.section
                   key="details"
                   className="pt-1 transform-gpu will-change-transform"
-                  initial={{ opacity: 0, x: 6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -4 }}
+                  custom={sidebarDirection}
+                  variants={sidebarVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   transition={sidebarTransition}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <button
-                        onClick={() => setSidebarView("browse")}
+                        onClick={() => {
+                          setSidebarDirection(-1);
+                          setSidebarView("browse");
+                        }}
                         className={`cursor-pointer mb-3 inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium transition duration-200 ${idleClass}`}
                       >
                         <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
