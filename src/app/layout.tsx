@@ -86,9 +86,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const logoUrl = `${siteConfig.url}/icon.svg`;
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta property="og:logo" content={logoUrl} />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
         <GoogleAnalytics measurementId={gaId} />
