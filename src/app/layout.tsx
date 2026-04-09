@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import SiteNav from "@/components/SiteNav";
 import { absoluteOgImageUrl, absoluteTwitterImageUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -83,7 +84,10 @@ export default function RootLayout({
         <meta property="og:logo" content={logoUrl} />
       </head>
       <body className="h-full antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SiteNav />
+          {children}
+        </ThemeProvider>
         <GoogleAnalytics measurementId={gaId} />
       </body>
     </html>

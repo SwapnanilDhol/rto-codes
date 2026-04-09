@@ -114,6 +114,53 @@ export const stateTransportData: Record<string, StateTransportData> = {
     ],
   },
 
+  // TELANGANA - From Telangana Transport Dept (as of 31-03-2025)
+  ts: {
+    metadata: {
+      source: "Transport Department, Telangana",
+      url: "https://www.transport.telangana.gov.in/html/statistics_vehicles.html",
+      extractedAt: "2026-04-09T15:00:00.000Z",
+      dataYear: 2025,
+      asOfDate: "31/03/2025",
+    },
+    organization: {
+      rtoOffices: 33,
+      totalOffices: 33,
+    },
+    zones: [
+      { name: "Hyderabad (Central)", rtos: 6 },
+      { name: "Hyderabad (East)", rtos: 5 },
+      { name: "Hyderabad (West)", rtos: 5 },
+      { name: "Secunderabad", rtos: 5 },
+      { name: "Ranga Reddy", rtos: 6 },
+      { name: "Medak", rtos: 3 },
+      { name: "Nalgonda", rtos: 2 },
+      { name: "Karimnagar", rtos: 3 },
+    ],
+    vehicleStatistics: {
+      registeredVehicles: 17364507,
+      year: 2025,
+    },
+    vehicleBreakdown: {
+      "Motor Cycle": 12752564,
+      "Motor Car": 2347479,
+      "Goods Carriages": 656413,
+      "Tractor and Trailers": 774659,
+      "Autorickshaw": 514883,
+      "Motor Cab": 144215,
+      "Educational Institute Buses": 31225,
+      "Maxi Cab": 26968,
+      "Stage Carriages": 9071,
+      "Contract Carriage": 8644,
+      "Other Vehicles": 94902,
+    },
+    revenueData: {
+      year: 2024,
+      collectionCr: 6990.29,
+      growthPercent: 9.38,
+    },
+  },
+
   // KARNATAKA - From transport department
   ka: {
     metadata: {

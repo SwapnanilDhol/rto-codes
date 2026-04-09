@@ -9,9 +9,8 @@ import { siteConfig, siteStats } from "@/lib/site";
 import { getCodeUrl, getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
-import { featuredGuides } from "@/data/guides";
+import { featuredPosts, getPostsByState } from "@/data/posts";
 import { indiaStatesWithDistricts } from "@/data/districts";
-import { getRuleByStateCode } from "@/data/state-rules";
 import { indiaStatesGeoJSON } from "@/data/loader";
 import { RTOFeature } from "@/types/rto";
 
@@ -274,12 +273,12 @@ export default function Home() {
       : "border-slate-200/80 bg-white/78 text-slate-900 placeholder:text-slate-400";
   const selectedClass =
     theme === "dark"
-      ? "border-sky-400/40 bg-sky-400/10 shadow-[0_10px_30px_rgba(14,165,233,0.12)] hover:-translate-y-0.5 hover:bg-sky-400/14"
-      : "border-sky-300 bg-sky-50 shadow-[0_10px_24px_rgba(59,130,246,0.08)] hover:-translate-y-0.5 hover:bg-sky-100/88";
+      ? "border-sky-400/40 bg-sky-400/10 hover:-translate-y-0.5 hover:bg-sky-400/14"
+      : "border-sky-300 bg-sky-50 hover:-translate-y-0.5 hover:bg-sky-100/88";
   const idleClass =
     theme === "dark"
-      ? "border-white/8 bg-white/[0.035] hover:-translate-y-0.5 hover:bg-white/[0.055] hover:border-white/14 hover:shadow-[0_12px_30px_rgba(2,6,23,0.18)]"
-      : "border-slate-200/80 bg-white/74 hover:-translate-y-0.5 hover:bg-white/88 hover:border-slate-300/80 hover:shadow-[0_12px_28px_rgba(148,163,184,0.14)]";
+      ? "border-white/8 bg-white/[0.035] hover:-translate-y-0.5 hover:bg-white/[0.055] hover:border-white/14"
+      : "border-slate-200/80 bg-white/74 hover:-translate-y-0.5 hover:bg-white/88 hover:border-slate-300/80";
   const mutedLabelClass = theme === "dark" ? "text-slate-500" : "text-slate-400";
   const mutedTextClass = theme === "dark" ? "text-slate-400" : "text-slate-500";
   const sectionBorderClass = theme === "dark" ? "border-white/10" : "border-slate-200";
@@ -299,7 +298,7 @@ export default function Home() {
       }`
     : "#";
   const stateNote = getStateNote(selectedState ?? undefined);
-  const stateRule = selectedState ? getRuleByStateCode(selectedState.code) : null;
+  const stateRule = selectedState ? getPostsByState(selectedState.code).find((p) => p.category === "state-rule") ?? null : null;
   const hoveredStateLookup = hoveredState ? stateByCode.get(hoveredState.stateCode) : null;
   const sidebarTransition = {
     type: "spring" as const,
@@ -361,82 +360,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div className="grid h-full min-h-0 grid-cols-1 lg:grid-cols-[390px_minmax(0,1fr)]">
-        <aside className={`relative z-10 flex h-full min-h-0 flex-col border-r shadow-[0_20px_60px_rgba(15,23,42,0.12)] ${panelClass}`}>
+        <aside className={`relative z-10 flex h-full min-h-0 flex-col border-r ${panelClass}`}>
           <div className={`border-b px-4 py-4 ${sectionBorderClass}`}>
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <h1 className="text-base font-semibold tracking-tight">RTO.codes</h1>
-                <p className={`text-xs ${mutedLabelClass}`}>Search and browse India RTO codes</p>
-                <p className="sr-only">
-                  Search {siteStats.totalCodes} India vehicle registration codes across {siteStats.totalStates} states and union territories.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center justify-end gap-2">
-                <Link
-                  href="/guides"
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
-                >
-                  Guides
-                </Link>
-                <Link
-                  href="/cities"
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
-                >
-                  Cities
-                </Link>
-                <Link
-                  href="/states"
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
-                >
-                  States
-                </Link>
-                <Link
-                  href="/codes"
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
-                >
-                  Codes
-                </Link>
-                <Link
-                  href="/services"
-                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
-                >
-                  Services
-                </Link>
-                <button
-                  onClick={() => {
-                    trackEvent("toggle_theme", {
-                      theme: theme === "dark" ? "light" : "dark",
-                    });
-                    toggleTheme();
-                  }}
-                  aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                  title={theme === "dark" ? "Light mode" : "Dark mode"}
-                  className={`cursor-pointer rounded-xl border p-2.5 transition ${searchClass}`}
-                >
-                  {theme === "dark" ? (
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.8}
-                        d="M12 3v2.25M12 18.75V21M4.72 4.72l1.59 1.59M17.69 17.69l1.59 1.59M3 12h2.25M18.75 12H21M4.72 19.28l1.59-1.59M17.69 6.31l1.59-1.59M15.75 12A3.75 3.75 0 118.25 12a3.75 3.75 0 017.5 0z"
-                      />
-                    </svg>
-                  ) : (
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.8}
-                        d="M21 12.8A9 9 0 1111.2 3a7.5 7.5 0 009.8 9.8z"
-                      />
-                    </svg>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <div className={`mt-4 flex items-center gap-3 rounded-[18px] border px-4 py-3 ${searchClass}`}>
+            <div className={`flex items-center gap-3 rounded-[18px] border px-4 py-3 ${searchClass}`}>
               <svg
                 className={`h-4 w-4 shrink-0 ${mutedLabelClass}`}
                 fill="none"
@@ -599,7 +525,7 @@ export default function Home() {
                             Reference guides
                           </p>
                           <Link
-                            href="/guides"
+                            href="/blog"
                             className={`cursor-pointer text-[11px] font-medium transition ${
                               theme === "dark" ? "text-slate-400 hover:text-sky-300" : "text-slate-500 hover:text-sky-700"
                             }`}
@@ -608,20 +534,20 @@ export default function Home() {
                           </Link>
                         </div>
                         <div className="space-y-2">
-                          {featuredGuides.slice(0, 3).map((guide) => (
+                          {featuredPosts.slice(0, 3).map((post) => (
                             <Link
-                              key={guide.slug}
-                              href={`/guides/${guide.slug}`}
+                              key={post.slug}
+                              href={`/blog/${post.slug}`}
                               className={`block cursor-pointer rounded-[18px] border px-4 py-3 text-left transition duration-200 ${idleClass}`}
                             >
                               <p className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${mutedLabelClass}`}>
-                                {guide.eyebrow}
+                                {post.eyebrow}
                               </p>
                               <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
-                                {guide.title}
+                                {post.title}
                               </p>
                               <p className={`mt-1 text-xs leading-6 ${mutedTextClass}`}>
-                                {guide.description}
+                                {post.description}
                               </p>
                             </Link>
                           ))}
@@ -751,7 +677,7 @@ export default function Home() {
                           </p>
                           {stateRule ? (
                             <Link
-                              href={`/rules/states/${stateRule.slug}`}
+                              href={`/blog/${stateRule.slug}`}
                               className={`mt-3 inline-flex cursor-pointer rounded-full border px-3 py-1.5 text-xs font-medium transition ${
                                 theme === "dark"
                                   ? "border-amber-300/20 bg-amber-50/5 text-amber-100 hover:border-amber-300/40"
@@ -776,7 +702,7 @@ export default function Home() {
                         wiki_url: wikiUrl,
                       })
                     }
-                    className={`group mt-3 block cursor-pointer rounded-[18px] border p-3 transition duration-200 hover:-translate-y-0.5 ${cardClass} ${theme === "dark" ? "hover:bg-white/[0.05] hover:shadow-[0_16px_32px_rgba(2,6,23,0.18)]" : "hover:bg-slate-100 hover:shadow-[0_16px_32px_rgba(148,163,184,0.14)]"}`}
+                    className={`group mt-3 block cursor-pointer rounded-[18px] border p-3 transition duration-200 hover:-translate-y-0.5 ${cardClass} ${theme === "dark" ? "hover:bg-white/[0.05]" : "hover:bg-slate-100"}`}
                   >
                     <div className="overflow-hidden rounded-[18px]">
                       {wikiSummary?.thumbnailUrl ? (
@@ -906,7 +832,7 @@ export default function Home() {
               style={{ left: hoveredState.x, top: hoveredState.y }}
             >
               <div
-                className={`relative overflow-hidden rounded-[16px] border shadow-[0_14px_32px_rgba(15,23,42,0.14)] backdrop-blur-xl ${
+                className={`relative overflow-hidden rounded-[16px] border backdrop-blur-xl ${
                   theme === "dark"
                     ? "border-white/12 bg-slate-950/68"
                     : "border-white/70 bg-white/72"

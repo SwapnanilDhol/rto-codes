@@ -66,6 +66,12 @@ export interface TopRegion {
   total: number;
 }
 
+export interface RevenueData {
+  year: number;
+  collectionCr: number;
+  growthPercent: number;
+}
+
 export interface StateTransportData {
   metadata: TransportMetadata;
   organization: TransportOrganization;
@@ -76,4 +82,6 @@ export interface StateTransportData {
   vehiclePopulation?: VehiclePopulation;
   topRegions?: TopRegion[];
   rtoDirectory?: Array<{ name: string; email: string | null }>;
+  vehicleBreakdown?: Record<string, number>;
+  revenueData?: RevenueData;
 }

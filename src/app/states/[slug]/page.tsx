@@ -3,10 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import IndianPlate from "@/components/IndianPlate";
 import TransportStats from "@/components/TransportStats";
-import { getCitiesByStateCode } from "@/data/cities";
 import { indiaStatesWithDistricts } from "@/data/districts";
-import { guides } from "@/data/guides";
-import { getRuleByStateCode } from "@/data/state-rules";
+import { getPostsByState, posts } from "@/data/posts";
 import { siteConfig } from "@/lib/site";
 import { getCodeUrl, getStateBySlug, getStateChipLabel, getStateNote, getStateSlug, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 
@@ -64,9 +62,8 @@ export default async function StatePage({ params }: StatePageProps) {
 
   const note = getStateNote({ code: state.code, name: state.name, entries: state.districts });
   const sampleCodes = state.districts.slice(0, 8);
-  const relatedGuides = guides.slice(0, 3);
-  const relatedCities = getCitiesByStateCode(state.code);
-  const stateRule = getRuleByStateCode(state.code);
+  const statePosts = getPostsByState(state.code);
+  const stateRule = getPostsByState(state.code).find((p) => p.category === "state-rule") ?? null;
   const wikiUrl = `https://en.wikipedia.org/wiki/${
     WIKI_TITLE_MAP[state.code] ?? state.name.replace(/\s+/g, "_")
   }`;
@@ -148,7 +145,7 @@ export default async function StatePage({ params }: StatePageProps) {
         </div>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_360px]">
-          <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-8 shadow-[0_20px_56px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-white/[0.04]">
+          <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-8 dark:border-white/10 dark:bg-white/[0.04]">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-500">
               {getStateChipLabel(state.code)} registration family
             </p>
@@ -188,7 +185,7 @@ export default async function StatePage({ params }: StatePageProps) {
             </div>
           </div>
 
-          <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-5 shadow-[0_20px_56px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-white/[0.04]">
+          <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-5 dark:border-white/10 dark:bg-white/[0.04]">
             <IndianPlate
               primaryCode={previewPrimaryCode}
               alternateCode={previewAlternateCode}
@@ -209,7 +206,7 @@ export default async function StatePage({ params }: StatePageProps) {
             </p>
             {stateRule ? (
               <Link
-                href={`/rules/states/${stateRule.slug}`}
+                href={`/blog/${stateRule.slug}`}
                 className="mt-4 inline-flex rounded-full border border-amber-400/30 bg-white/50 px-4 py-2 text-sm font-medium text-amber-900 transition hover:border-amber-500 hover:bg-white/70 dark:border-amber-300/20 dark:bg-amber-50/5 dark:text-amber-100 dark:hover:border-amber-300/40"
               >
                 Read the full {state.name} rule page
@@ -247,21 +244,21 @@ export default async function StatePage({ params }: StatePageProps) {
           </div>
 
           <div className="grid gap-6">
-            {relatedCities.length > 0 ? (
+            {statePosts.length > 0 ? (
               <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-                <h2 className="text-xl font-semibold tracking-[-0.03em]">Related city pages</h2>
+                <h2 className="text-xl font-semibold tracking-[-0.03em]">Blog posts for {state.name}</h2>
                 <div className="mt-5 grid gap-3">
-                  {relatedCities.map((cityPage) => (
+                  {statePosts.map((post) => (
                     <Link
-                      key={cityPage.slug}
-                      href={`/cities/${cityPage.slug}`}
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
                       className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
                     >
                       <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                        {cityPage.eyebrow}
+                        {post.eyebrow}
                       </p>
                       <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
-                        {cityPage.title}
+                        {post.title}
                       </p>
                     </Link>
                   ))}
@@ -270,19 +267,19 @@ export default async function StatePage({ params }: StatePageProps) {
             ) : null}
 
             <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-              <h2 className="text-xl font-semibold tracking-[-0.03em]">Related guides</h2>
+              <h2 className="text-xl font-semibold tracking-[-0.03em]">Recent guides</h2>
               <div className="mt-5 grid gap-3">
-                {relatedGuides.map((guide) => (
+                {posts.slice(0, 3).map((post) => (
                   <Link
-                    key={guide.slug}
-                    href={`/guides/${guide.slug}`}
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
                     className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
                   >
                     <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                      {guide.eyebrow}
+                      {post.eyebrow}
                     </p>
                     <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
-                      {guide.title}
+                      {post.title}
                     </p>
                   </Link>
                 ))}
@@ -296,7 +293,7 @@ export default async function StatePage({ params }: StatePageProps) {
           <div className="mt-4 grid gap-4">
             <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
               Start with the state prefix and sample code list to understand how the registration family is structured.
-              Then move to the exact code page if you already know the office number, or use the related guides if the
+              Then move to the exact code page if you already know the office number, or use the related blog posts if the
               question is about format, HSRP, or a state-specific rule change.
             </p>
             <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">

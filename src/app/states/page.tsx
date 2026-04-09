@@ -65,7 +65,7 @@ export default function StatesPage() {
             <Link
               key={state.code}
               href={getStateUrl(state)}
-              className="group rounded-[28px] border border-slate-200/90 bg-white/80 p-6 shadow-[0_16px_48px_rgba(148,163,184,0.12)] transition duration-200 hover:-translate-y-1 hover:border-sky-300 hover:shadow-[0_24px_64px_rgba(56,189,248,0.12)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-sky-400/40 dark:hover:bg-white/[0.06]"
+              className="group rounded-[28px] border border-slate-200/90 bg-white/80 p-6 transition duration-200 hover:-translate-y-1 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-sky-400/40 dark:hover:bg-white/[0.06]"
             >
               <div className="flex items-center justify-between gap-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-500">
