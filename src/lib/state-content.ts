@@ -64,6 +64,41 @@ export function getStateBySlug(slug: string) {
   return indiaStatesWithDistricts.find((state) => getStateSlug(state) === slug) ?? null;
 }
 
+export type CodeRecord = {
+  state: State;
+  district: State["districts"][number];
+};
+
+export function getCodeSlug(rtoCode: string) {
+  return rtoCode.toLowerCase();
+}
+
+export function getCodeUrl(rtoCode: string) {
+  return `/codes/${getCodeSlug(rtoCode)}`;
+}
+
+export function getAllCodeRecords(): CodeRecord[] {
+  return indiaStatesWithDistricts.flatMap((state) =>
+    state.districts.map((district) => ({
+      state,
+      district,
+    }))
+  );
+}
+
+export function getCodeBySlug(slug: string): CodeRecord | null {
+  const normalized = slug.toUpperCase();
+
+  for (const state of indiaStatesWithDistricts) {
+    const district = state.districts.find((entry) => entry.rtoCode.toUpperCase() === normalized);
+    if (district) {
+      return { state, district };
+    }
+  }
+
+  return null;
+}
+
 export function getStateNote(state: { code: string; name: string; entries: { length: number } } | undefined): StateNote | null {
   if (!state) return null;
 

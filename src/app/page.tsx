@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig, siteStats } from "@/lib/site";
-import { getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
+import { getCodeUrl, getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
 import { featuredGuides } from "@/data/guides";
@@ -381,6 +381,12 @@ export default function Home() {
                   className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
                 >
                   States
+                </Link>
+                <Link
+                  href="/codes"
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
+                >
+                  Codes
                 </Link>
                 <button
                   onClick={() => {
@@ -813,8 +819,9 @@ export default function Home() {
                     </div>
                     <div className="grid gap-2">
                       {filteredEntries.map((entry) => (
-                        <div
+                        <Link
                           key={entry.id}
+                          href={getCodeUrl(entry.rtoCode)}
                           className={`rounded-[16px] border px-3 py-2.5 ${cardClass}`}
                         >
                           <div className="flex items-start justify-between gap-3">
@@ -843,7 +850,7 @@ export default function Home() {
                               </div>
                             ) : null}
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                     {filteredEntries.length === 0 ? (

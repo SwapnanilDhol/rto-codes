@@ -2,44 +2,44 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import IndianPlate from "@/components/IndianPlate";
-import { indiaStatesWithDistricts } from "@/data/districts";
 import { guides } from "@/data/guides";
 import { siteConfig } from "@/lib/site";
-import { getCodeUrl, getStateBySlug, getStateChipLabel, getStateNote, getStateSlug, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
+import { getAllCodeRecords, getCodeBySlug, getCodeSlug, getCodeUrl, getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 
-type StatePageProps = {
+type CodePageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
 
 export async function generateStaticParams() {
-  return indiaStatesWithDistricts.map((state) => ({
-    slug: getStateSlug(state),
+  return getAllCodeRecords().map(({ district }) => ({
+    slug: getCodeSlug(district.rtoCode),
   }));
 }
 
-export async function generateMetadata({ params }: StatePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CodePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const state = getStateBySlug(slug);
+  const record = getCodeBySlug(slug);
 
-  if (!state) {
-    return { title: "State not found" };
+  if (!record) {
+    return { title: "Code not found" };
   }
 
-  const title = `${state.name} RTO codes`;
-  const description = `Browse ${state.name} RTO codes, registration prefixes, office counts, and state-specific number plate notes on RTO.codes.`;
-  const url = `${siteConfig.url}${getStateUrl(state)}`;
+  const { state, district } = record;
+  const title = `${district.rtoCode} meaning`;
+  const description = `${district.rtoCode} is the registration code for ${district.name.trim()}, ${state.name}. Browse the code, state context, and related India RTO references.`;
+  const url = `${siteConfig.url}${getCodeUrl(district.rtoCode)}`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: getStateUrl(state),
+      canonical: getCodeUrl(district.rtoCode),
     },
     openGraph: {
       type: "article",
-      title: `${title} | RTO.codes`,
+      title: `${district.rtoCode} meaning | RTO.codes`,
       description,
       url,
       siteName: siteConfig.name,
@@ -47,35 +47,37 @@ export async function generateMetadata({ params }: StatePageProps): Promise<Meta
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | RTO.codes`,
+      title: `${district.rtoCode} meaning | RTO.codes`,
       description,
     },
   };
 }
 
-export default async function StatePage({ params }: StatePageProps) {
+export default async function CodePage({ params }: CodePageProps) {
   const { slug } = await params;
-  const state = getStateBySlug(slug);
+  const record = getCodeBySlug(slug);
 
-  if (!state) notFound();
+  if (!record) notFound();
 
-  const note = getStateNote({ code: state.code, name: state.name, entries: state.districts });
-  const sampleCodes = state.districts.slice(0, 8);
+  const { state, district } = record;
+  const stateEntries = state.districts;
+  const neighbors = stateEntries
+    .filter((entry) => entry.rtoCode !== district.rtoCode)
+    .slice(0, 6);
+  const note = getStateNote({ code: state.code, name: state.name, entries: stateEntries });
   const relatedGuides = guides.slice(0, 3);
   const wikiUrl = `https://en.wikipedia.org/wiki/${
     WIKI_TITLE_MAP[state.code] ?? state.name.replace(/\s+/g, "_")
   }`;
-  const previewPrimaryCode = state.code === "TS" ? `${state.code}-28-PK-1310` : `${state.code}-28-PK-1310`;
-  const previewAlternateCode = state.code === "TS" ? "TG-28-PK-1310" : undefined;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
-        headline: `${state.name} RTO codes`,
-        description: `Browse ${state.name} RTO codes, prefixes, and office coverage.`,
-        mainEntityOfPage: `${siteConfig.url}${getStateUrl(state)}`,
+        headline: `${district.rtoCode} meaning`,
+        description: `${district.rtoCode} is the registration code for ${district.name.trim()}, ${state.name}.`,
+        mainEntityOfPage: `${siteConfig.url}${getCodeUrl(district.rtoCode)}`,
         author: {
           "@type": "Organization",
           name: siteConfig.name,
@@ -90,18 +92,18 @@ export default async function StatePage({ params }: StatePageProps) {
         mainEntity: [
           {
             "@type": "Question",
-            name: `What is the state prefix for ${state.name}?`,
+            name: `What does ${district.rtoCode} stand for?`,
             acceptedAnswer: {
               "@type": "Answer",
-              text: `${state.name} uses the ${state.code} prefix${state.code === "TS" ? ", with TG also relevant for Telangana legacy and alternate references," : ""} in this dataset.`,
+              text: `${district.rtoCode} maps to ${district.name.trim()} in the ${state.name} registration family.`,
             },
           },
           {
             "@type": "Question",
-            name: `How many code blocks are listed for ${state.name}?`,
+            name: `Which state uses ${district.rtoCode}?`,
             acceptedAnswer: {
               "@type": "Answer",
-              text: `${state.name} has ${state.districts.length} registration code blocks listed on this page.`,
+              text: `${district.rtoCode} belongs to ${state.name}, which uses the ${state.code}${state.code === "TS" ? " / TG" : ""} registration family.`,
             },
           },
         ],
@@ -116,20 +118,20 @@ export default async function StatePage({ params }: StatePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col px-6 py-12 sm:px-8 lg:px-10">
+      <div className="mx-auto flex w-full max-w-5xl flex-col px-6 py-12 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
-              href="/states"
+              href="/codes"
               className="rounded-full border border-slate-200/90 bg-white/80 px-4 py-2 text-sm font-medium transition hover:border-sky-300 hover:text-sky-700 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-sky-400/40 dark:hover:text-sky-300"
             >
-              Back to states
+              Back to codes
             </Link>
             <Link
-              href="/"
+              href={getStateUrl(state)}
               className="rounded-full border border-slate-200/90 bg-white/80 px-4 py-2 text-sm font-medium transition hover:border-sky-300 hover:text-sky-700 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-sky-400/40 dark:hover:text-sky-300"
             >
-              Open lookup
+              State page
             </Link>
           </div>
           <a
@@ -142,42 +144,43 @@ export default async function StatePage({ params }: StatePageProps) {
           </a>
         </div>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_360px]">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-8 shadow-[0_20px_56px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-white/[0.04]">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-500">
-              {getStateChipLabel(state.code)} registration family
+              {district.rtoCode} code page
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-              {state.name} RTO codes
+              {district.rtoCode} means {district.name.trim()}.
             </h1>
             <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
-              Browse the {state.code} registration ladder for {state.name}, including office counts, sample code blocks,
-              and state-specific notes that help explain how the number plate family is structured.
+              {district.rtoCode} belongs to the {getStateChipLabel(state.code)} registration family for {state.name}.
+              Use this page as the code-level explanation layer before moving into the broader state directory or the
+              interactive lookup.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-[22px] border border-slate-200/80 bg-white/72 p-5 dark:border-white/10 dark:bg-white/[0.03]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
-                  Prefix
+                  Code
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
+                  {district.rtoCode}
+                </p>
+              </div>
+              <div className="rounded-[22px] border border-slate-200/80 bg-white/72 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+                  Office
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
+                  {district.name.trim()}
+                </p>
+              </div>
+              <div className="rounded-[22px] border border-slate-200/80 bg-white/72 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+                  State
                 </p>
                 <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
                   {state.code === "TS" ? "TS / TG" : state.code}
-                </p>
-              </div>
-              <div className="rounded-[22px] border border-slate-200/80 bg-white/72 p-5 dark:border-white/10 dark:bg-white/[0.03]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
-                  Code blocks
-                </p>
-                <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
-                  {state.districts.length}
-                </p>
-              </div>
-              <div className="rounded-[22px] border border-slate-200/80 bg-white/72 p-5 dark:border-white/10 dark:bg-white/[0.03]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
-                  First series
-                </p>
-                <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
-                  {state.districts[0]?.rtoCode}
                 </p>
               </div>
             </div>
@@ -185,11 +188,15 @@ export default async function StatePage({ params }: StatePageProps) {
 
           <div className="rounded-[32px] border border-slate-200/80 bg-white/80 p-5 shadow-[0_20px_56px_rgba(148,163,184,0.12)] dark:border-white/10 dark:bg-white/[0.04]">
             <IndianPlate
-              primaryCode={previewPrimaryCode}
-              alternateCode={previewAlternateCode}
+              primaryCode={`${district.rtoCode}-PK-1310`}
+              alternateCode={
+                state.code === "TS" && district.alternateCodes?.[0]
+                  ? `${district.alternateCodes[0]}-PK-1310`
+                  : undefined
+              }
             />
             <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
-              A state-specific preview using the {state.code === "TS" ? "TS / TG" : state.code} registration family.
+              A code-specific preview for {district.rtoCode} inside the {state.name} registration family.
             </p>
           </div>
         </section>
@@ -205,25 +212,33 @@ export default async function StatePage({ params }: StatePageProps) {
           </section>
         ) : null}
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em]">Sample codes in {state.name}</h2>
-            <p className="mt-3 text-[15px] leading-8 text-slate-600 dark:text-slate-300">
-              These sample entries help users understand how the {state.code} registration family begins before they
-              move into the full lookup.
-            </p>
+            <h2 className="text-2xl font-semibold tracking-[-0.03em]">Where this code fits</h2>
+            <div className="mt-4 grid gap-4">
+              <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
+                {district.rtoCode} is one code block within the broader {state.name} ladder. Users who search directly
+                for this code are usually trying to identify an office from a plate, verify that a number belongs to the
+                right state family, or understand a code they have seen in the wild.
+              </p>
+              <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
+                These code pages are the long-tail search layer for RTO.codes. They give every meaningful registration
+                mark its own indexable page instead of leaving all context trapped inside the interactive UI.
+              </p>
+            </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {sampleCodes.map((entry) => (
+            <h3 className="mt-8 text-xl font-semibold tracking-[-0.02em]">Nearby codes in {state.name}</h3>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {neighbors.map((entry) => (
                 <Link
                   key={entry.id}
                   href={getCodeUrl(entry.rtoCode)}
-                  className="rounded-[20px] border border-slate-200/80 bg-white/80 p-4 dark:border-white/10 dark:bg-white/[0.03]"
+                  className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-500">
                     {entry.rtoCode}
                   </p>
-                  <p className="mt-2 text-base font-semibold tracking-[-0.02em]">
+                  <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
                     {entry.name.trim()}
                   </p>
                 </Link>
@@ -249,21 +264,6 @@ export default async function StatePage({ params }: StatePageProps) {
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Why this state page exists</h2>
-          <div className="mt-4 grid gap-4">
-            <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
-              The state landing page gives RTO.codes an SEO surface that sits between the homepage and future office-level
-              pages. Users can land here from search, understand the prefix family quickly, and move into the live lookup
-              or deeper guides.
-            </p>
-            <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
-              This is also the right place to grow state-specific compliance notes, HSRP links, transfer guidance, and
-              eventually code-level pages for important office series.
-            </p>
           </div>
         </section>
       </div>
