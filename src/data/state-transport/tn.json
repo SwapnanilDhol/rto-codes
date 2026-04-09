@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "source": "tnsta.gov.in",
+    "url": "https://tnsta.gov.in/pdfpage/pdfpage_tn_4QJezuj_2023_07_20.pdf",
+    "extractedAt": "2026-04-09T13:43:19.579Z",
+    "asOfDate": "01/04/2023"
+  },
+  "organization": {
+    "zonalOffices": 12,
+    "enforcementOffices": 2,
+    "rtoOffices": 91,
+    "unitOffices": 54,
+    "checkPosts": 22,
+    "totalOffices": 181
+  },
+  "zones": [
+    {
+      "name": "Chennai (North)",
+      "rtos": 10
+    },
+    {
+      "name": "Chennai (South)",
+      "rtos": 12
+    },
+    {
+      "name": "Villupuram",
+      "rtos": 9
+    },
+    {
+      "name": "Vellore",
+      "rtos": 7
+    },
+    {
+      "name": "Salem",
+      "rtos": 8
+    },
+    {
+      "name": "Erode",
+      "rtos": 9
+    },
+    {
+      "name": "Coimbatore",
+      "rtos": 12
+    },
+    {
+      "name": "Thanjavur",
+      "rtos": 7
+    },
+    {
+      "name": "Tiruchirapalli",
+      "rtos": 7
+    },
+    {
+      "name": "Madurai",
+      "rtos": 7
+    },
+    {
+      "name": "Tirunelveli",
+      "rtos": 8
+    },
+    {
+      "name": "Virudhunagar",
+      "rtos": 6
+    }
+  ],
+  "rtoDirectory": [
+    {
+      "name": "Central Ayanavaram",
+      "email": null
+    },
+    {
+      "name": "Chennai (North West)",
+      "email": null
+    },
+    {
+      "name": "Chennai (North East)",
+      "email": null
+    },
+    {
+      "name": "Chennai (East), Basin",
+      "email": null
+    },
+    {
+      "name": "Chennai (North) Kolathur",
+      "email": null
+    },
+    {
+      "name": "Poonamallee",
+      "email": null
+    },
+    {
+      "name": "Ambattur",
+      "email": null
+    },
+    {
+      "name": "Redhills",
+      "email": null
+    },
+    {
+      "name": "Tiruvallur",
+      "email": null
+    },
+    {
+      "name": "Pethikuppam Check Post",
+      "email": null
+    },
+    {
+      "name": "Chennai (South",
+      "email": null
+    },
+    {
+      "name": "Chennai",
+      "email": null
+    },
+    {
+      "name": "Chennai (West) K.K.Nagar",
+      "email": null
+    },
+    {
+      "name": "Tambaram",
+      "email": null
+    },
+    {
+      "name": "Sholinganallur",
+      "email": null
+    },
+    {
+      "name": "Chengalpet",
+      "email": null
+    },
+    {
+      "name": "Kancheepuram",
+      "email": null
+    },
+    {
+      "name": "Meenambakkam Alandur",
+      "email": null
+    },
+    {
+      "name": "Kunrathur",
+      "email": null
+    },
+    {
+      "name": "Sriperumpudur",
+      "email": null
+    },
+    {
+      "name": "Kallakurichi",
+      "email": null
+    },
+    {
+      "name": "Arani",
+      "email": null
+    }
+  ],
+  "vehicleStatistics": {
+    "fleetStrength": 20944,
+    "drivingSchools": 2195
+  },
+  "permitData": {},
+  "stcData": {
+    "corporations": 8,
+    "fleetStrength": 20944,
+    "scheduledServices": 19496,
+    "dailyKm": 85.23,
+    "totalStaff": 124478
+  }
+}

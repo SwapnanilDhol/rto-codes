@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "source": "Maharashtra Motor Vehicle Department",
+    "url": "https://transport.maharashtra.gov.in/Site/Upload/Pdf/2024-AS-ON-Vehicle-Population.pdf",
+    "extractedAt": "2026-04-09T13:43:32.586Z",
+    "dataYear": 2024
+  },
+  "format": "vehicle_population",
+  "districts": [
+    {
+      "name": "Mumbai",
+      "values": [
+        3
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        10
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        13
+      ]
+    },
+    {
+      "name": "Category",
+      "values": [
+        1
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        23
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        34
+      ]
+    },
+    {
+      "name": "Nanded",
+      "values": [
+        1
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        46
+      ]
+    },
+    {
+      "name": "Wardha",
+      "values": [
+        1
+      ]
+    },
+    {
+      "name": "Region",
+      "values": [
+        66
+      ]
+    }
+  ]
+}

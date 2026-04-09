@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import IndianPlate from "@/components/IndianPlate";
+import TransportStats from "@/components/TransportStats";
 import { getCitiesByStateCode } from "@/data/cities";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { guides } from "@/data/guides";
@@ -216,6 +217,8 @@ export default async function StatePage({ params }: StatePageProps) {
             ) : null}
           </section>
         ) : null}
+
+        <TransportStats stateCode={state.code} stateName={state.name} />
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">

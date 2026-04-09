@@ -1271,9 +1271,9 @@ export const indiaStatesWithDistricts: State[] = [
     code: "PY",
     name: "Puducherry",
     districts: [
-      { id: "py-01", name: "Karaikal", rtoCode: "PY-01" },
-      { id: "py-02", name: "Mahe", rtoCode: "PY-02" },
-      { id: "py-03", name: "Puducherry", rtoCode: "PY-03" },
+      { id: "py-01", name: "Pondicherry", rtoCode: "PY-01" },
+      { id: "py-02", name: "Karaikal", rtoCode: "PY-02" },
+      { id: "py-03", name: "Mahe", rtoCode: "PY-03" },
       { id: "py-04", name: "Yanam", rtoCode: "PY-04" },
     ]
   },

@@ -1543,6 +1543,60 @@ export const sampleRTOData: RTOGeoJSON = {
       }
     },
 
+    // PONDICHERRY (PUDUCHERRY)
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [[[79.70, 11.90], [79.70, 12.10], [79.90, 12.10], [79.90, 11.90], [79.70, 11.90]]]
+      },
+      properties: {
+        id: "py-01",
+        name: "PY-01 - Pondicherry (Main)",
+        state: "Pondicherry",
+        description: "Pondicherry: Pondicherry Urban, Oupor, Nelli"
+      }
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [[[79.90, 11.90], [79.90, 12.10], [80.00, 12.10], [80.00, 11.90], [79.90, 11.90]]]
+      },
+      properties: {
+        id: "py-02",
+        name: "PY-02 - Karaikal",
+        state: "Pondicherry",
+        description: "Karaikal District: Karaikal, Tirunallar, Nedungadu"
+      }
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [[[79.30, 11.80], [79.30, 11.95], [79.50, 11.95], [79.50, 11.80], [79.30, 11.80]]]
+      },
+      properties: {
+        id: "py-03",
+        name: "PY-03 - Mahe",
+        state: "Pondicherry",
+        description: "Mahe District: Mahe, Palloor, Cheruvannur"
+      }
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [[[79.60, 16.70], [79.60, 17.00], [79.80, 17.00], [79.80, 16.70], [79.60, 16.70]]]
+      },
+      properties: {
+        id: "py-04",
+        name: "PY-04 - Yanam",
+        state: "Pondicherry",
+        description: "Yanam District: Yanam, Dariyanagar, Kimmuvo"
+      }
+    },
+
     // WEST BENGAL
     {
       type: "Feature",

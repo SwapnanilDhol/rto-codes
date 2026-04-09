@@ -1,0 +1,1564 @@
+{
+  "metadata": {
+    "source": "tnsta.gov.in",
+    "url": "https://tnsta.gov.in/pdfpage/pdfpage_tn_4QJezuj_2023_07_20.pdf",
+    "extractedAt": "2026-04-09T13:38:14.691Z",
+    "asOfDate": "01/04/2023"
+  },
+  "organization": {
+    "zonalOffices": 12,
+    "enforcementOffices": 2,
+    "rtoOffices": 91,
+    "unitOffices": 54,
+    "checkPosts": 22,
+    "totalOffices": 181
+  },
+  "zones": [
+    {
+      "name": "Villupuram",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Vellore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Salem",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Erode",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Thanjavur",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "JTC, Coimbatore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Trichy",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "JTC, Madurai",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Virudhunagar",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Tirunelveli",
+      "rtos": [
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enfo)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)",
+        "(Enforcement)"
+      ],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "CHENNAI NORTH",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VELLORE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "SALEM",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "CHENNAI SOUTH",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VILLUPURAM",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "THANJAVUR",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TIRUCHIRAPALLI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "MADURAI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "ERODE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "COIMBATORE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VIRUDHUNAGAR",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TIRUNELVELI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Chennai North",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Chennai South",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Villupuram",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Vellore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Salem",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Erode –",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Coimbatore –",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Tiruchirapalli",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Thanjavur",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Madurai",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Virudhunagar",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Tirunelveli",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Chennai North",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Villupuram",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Vellore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Madurai",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Coimbatore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Erode",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Tirunelveli",
+      "rtos": [
+        ", Chennai South East",
+        ", Kundrathur",
+        "Meenambakkam",
+        "Chennai (north)",
+        "Chennai (South West)",
+        "Coimbatore (North)",
+        ", Coimbatore (South)",
+        "Tambaram",
+        "Perundurai",
+        ", Coimbatore (South)"
+      ],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Chennai North",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Villupuram",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Vellore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Madurai",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Coimbatore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Erode",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Thirunelveli",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "CHENNAI - NORTH",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "CHENNAI - SOUTH",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VELLORE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VILLUPURAM",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "SALEM",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TRICHY",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "THANJAVUR",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "COIMBATORE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "ERODE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TIRUNELVELI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "MADURAI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "VIRUDHUNAGAR",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Chennai (North)",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Vellore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Villupuram",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Salem",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Trichy",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Thanjavur",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Coimbatore",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Erode",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Madurai",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Virudhunagar",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Tirunelveli",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "Name of the",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TIRUCHIRAPALLI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "SALEM",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "COIMBATORE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "ERODE",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "MADURAI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    },
+    {
+      "name": "TIRUNELVELI",
+      "rtos": [],
+      "unitOffices": [],
+      "checkPosts": []
+    }
+  ],
+  "rtoOfficeDirectory": [
+    {
+      "name": "RTO, s- 10"
+    },
+    {
+      "name": "RTO, s- 12"
+    },
+    {
+      "name": "RTO, s- 9"
+    },
+    {
+      "name": "RTO, s- 7"
+    },
+    {
+      "name": "RTO, s- 8"
+    },
+    {
+      "name": "RTO, s- 9"
+    },
+    {
+      "name": "RTO, s- 12"
+    },
+    {
+      "name": "RTO, s- 7"
+    },
+    {
+      "name": "RTO, s- 7"
+    },
+    {
+      "name": "RTO, s- 7"
+    },
+    {
+      "name": "RTO, s-8"
+    },
+    {
+      "name": "RTO, s- 6"
+    },
+    {
+      "name": "RTO, Offices: 91,Unit Offices:54, Check Posts:22"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 9"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 7"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, (Enfo)"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, (enf) -1"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, (enf)-1"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, (enf)-1"
+    },
+    {
+      "name": "RTO, (enf)-1"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, (Enforcement)"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, / Unit Office code (RTO – 91"
+    },
+    {
+      "name": "RTO, / Unit Office"
+    },
+    {
+      "name": "RTO, / Unit Office"
+    },
+    {
+      "name": "RTO, Name of the Office"
+    },
+    {
+      "name": "RTO, s Phone Numbers(as on 01/04/2023)"
+    },
+    {
+      "name": "RTO, Central Ayanavaram"
+    },
+    {
+      "name": "RTO, tn01@nic.in"
+    },
+    {
+      "name": "RTO, Chennai (North West)"
+    },
+    {
+      "name": "RTO, tn02@nic.in"
+    },
+    {
+      "name": "RTO, tn03@nic.in"
+    },
+    {
+      "name": "RTO, Chennai (North East)"
+    },
+    {
+      "name": "RTO, Chennai (East), Basin"
+    },
+    {
+      "name": "RTO, tn04@nic.in"
+    },
+    {
+      "name": "RTO, Chennai (North) Kolathur"
+    },
+    {
+      "name": "RTO, tn05@nic.in"
+    },
+    {
+      "name": "RTO, Poonamallee"
+    },
+    {
+      "name": "RTO, tn12@nic.in"
+    },
+    {
+      "name": "RTO, Ambattur"
+    },
+    {
+      "name": "RTO, tn13@nic.in"
+    },
+    {
+      "name": "RTO, Redhills"
+    },
+    {
+      "name": "RTO, tn18@nic.in"
+    },
+    {
+      "name": "RTO, tn18y@nic.in"
+    },
+    {
+      "name": "RTO, Tiruvallur"
+    },
+    {
+      "name": "RTO, tn20@nic.in"
+    },
+    {
+      "name": "RTO, -tn20x@nic.in"
+    },
+    {
+      "name": "RTO, Pethikuppam Check Post"
+    },
+    {
+      "name": "RTO, Chennai (North Zone) Enf"
+    },
+    {
+      "name": "RTO, Enforcement at JTC(E)"
+    },
+    {
+      "name": "RTO, Chennai (South"
+    },
+    {
+      "name": "RTO, Chennai"
+    },
+    {
+      "name": "RTO, tn06@nic.in"
+    },
+    {
+      "name": "RTO, tn07@nic.in"
+    },
+    {
+      "name": "RTO, tn09@nic.in"
+    },
+    {
+      "name": "RTO, Chennai (West) K.K.Nagar"
+    },
+    {
+      "name": "RTO, Chennai (South West)"
+    },
+    {
+      "name": "RTO, tn10@nic.in"
+    },
+    {
+      "name": "RTO, Tambaram"
+    },
+    {
+      "name": "RTO, tn11@nic.in"
+    },
+    {
+      "name": "RTO, Sholinganallur"
+    },
+    {
+      "name": "RTO, tn14@nic.in"
+    },
+    {
+      "name": "RTO, Chengalpet"
+    },
+    {
+      "name": "RTO, tn19@nic.in"
+    },
+    {
+      "name": "RTO, tn19x@nic.in"
+    },
+    {
+      "name": "RTO, Kancheepuram"
+    },
+    {
+      "name": "RTO, tn21@nic.in"
+    },
+    {
+      "name": "RTO, Meenambakkam Alandur"
+    },
+    {
+      "name": "RTO, tn22@nic.in"
+    },
+    {
+      "name": "RTO, Kunrathur"
+    },
+    {
+      "name": "RTO, tn85@nic.in"
+    },
+    {
+      "name": "RTO, Sriperumpudur"
+    },
+    {
+      "name": "RTO, .tn87@gov.in"
+    },
+    {
+      "name": "RTO, Chennai (South Zone) (Enf)"
+    },
+    {
+      "name": "RTO, Ulundurpet"
+    },
+    {
+      "name": "RTO, tn15@nic.in"
+    },
+    {
+      "name": "RTO, Kallakurichi"
+    },
+    {
+      "name": "RTO, tn15z@nic.in"
+    },
+    {
+      "name": "RTO, Tindivanam"
+    },
+    {
+      "name": "RTO, tn16@nic.in"
+    },
+    {
+      "name": "RTO, tn16z@nic.in"
+    },
+    {
+      "name": "RTO, Tiruvannamalai"
+    },
+    {
+      "name": "RTO, tn25@nic.in"
+    },
+    {
+      "name": "RTO, Cuddalore"
+    },
+    {
+      "name": "RTO, tn31@nic.in"
+    },
+    {
+      "name": "RTO, tn31z@nic.in"
+    },
+    {
+      "name": "RTO, Villupuram"
+    },
+    {
+      "name": "RTO, tn32@nic.in"
+    },
+    {
+      "name": "RTO, Chidambaram"
+    },
+    {
+      "name": "RTO, -tn91@nic.in"
+    },
+    {
+      "name": "RTO, tn31y@nic.in"
+    },
+    {
+      "name": "RTO, tn31v@nic.in"
+    },
+    {
+      "name": "RTO, Arani"
+    },
+    {
+      "name": "RTO, tn 25z@nic.in"
+    },
+    {
+      "name": "RTO, -tn25y@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement Villupuram"
+    },
+    {
+      "name": "RTO, tn23@nic.in"
+    },
+    {
+      "name": "RTO, tn23t@nic.in"
+    },
+    {
+      "name": "RTO, Vellore"
+    },
+    {
+      "name": "RTO, Krishnagiri"
+    },
+    {
+      "name": "RTO, tn24@nic.in"
+    },
+    {
+      "name": "RTO, Hosur"
+    },
+    {
+      "name": "RTO, tn70@nic.in"
+    },
+    {
+      "name": "RTO, Ranipet"
+    },
+    {
+      "name": "RTO, tn73@nic.in"
+    },
+    {
+      "name": "RTO, tn73z@nic.in"
+    },
+    {
+      "name": "RTO, Vaniyambadi"
+    },
+    {
+      "name": "RTO, tn83@nic.in"
+    },
+    {
+      "name": "RTO, tn83y@nic.in"
+    },
+    {
+      "name": "RTO, Tirupattur"
+    },
+    {
+      "name": "RTO, tn83z@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement Vellore"
+    },
+    {
+      "name": "RTO, ,Dharmapuri"
+    },
+    {
+      "name": "RTO, tn29@nic.in"
+    },
+    {
+      "name": "RTO, tn29w@nic.in"
+    },
+    {
+      "name": "RTO, tn29z@nic.in"
+    },
+    {
+      "name": "RTO, Salem (West)"
+    },
+    {
+      "name": "RTO, tn30@nic.in"
+    },
+    {
+      "name": "RTO, tn30w@nic.in"
+    },
+    {
+      "name": "RTO, Sangagiri"
+    },
+    {
+      "name": "RTO, tn52@nic.in"
+    },
+    {
+      "name": "RTO, Salem (East)"
+    },
+    {
+      "name": "RTO, tn54@nic.in"
+    },
+    {
+      "name": "RTO, Attur"
+    },
+    {
+      "name": "RTO, tn77@nic.in"
+    },
+    {
+      "name": "RTO, tn77z@nic.in"
+    },
+    {
+      "name": "RTO, Salem (South)"
+    },
+    {
+      "name": "RTO, tn90@nic.in"
+    },
+    {
+      "name": "RTO, Mettur"
+    },
+    {
+      "name": "RTO, tn52z@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement - Salem"
+    },
+    {
+      "name": "RTO, Namakkal (North)"
+    },
+    {
+      "name": "RTO, tn28@nic.in"
+    },
+    {
+      "name": "RTO, tn28z@nic.in"
+    },
+    {
+      "name": "RTO, Erode (East)"
+    },
+    {
+      "name": "RTO, tn33@nic.in"
+    },
+    {
+      "name": "RTO, tn34@nic.in"
+    },
+    {
+      "name": "RTO, Tiruchengode"
+    },
+    {
+      "name": "RTO, Kumarapalayam"
+    },
+    {
+      "name": "RTO, ppm.nmk@tn.gov.in"
+    },
+    {
+      "name": "RTO, Gobichettipalayam"
+    },
+    {
+      "name": "RTO, tn36@nic.in"
+    },
+    {
+      "name": "RTO, tn36w@nic.in"
+    },
+    {
+      "name": "RTO, tn36z@nic.in"
+    },
+    {
+      "name": "RTO, Perundurai"
+    },
+    {
+      "name": "RTO, tn56@nic.in"
+    },
+    {
+      "name": "RTO, Erode (West)"
+    },
+    {
+      "name": "RTO, tn86@nic.in"
+    },
+    {
+      "name": "RTO, Namakkal(South)"
+    },
+    {
+      "name": "RTO, tn88@nic.in"
+    },
+    {
+      "name": "RTO, tn88z@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement –Erode"
+    },
+    {
+      "name": "RTO, Coimbatore- South"
+    },
+    {
+      "name": "RTO, tn37@nic.in"
+    },
+    {
+      "name": "RTO, tn37z@nic.in"
+    },
+    {
+      "name": "RTO, Coimbatore- North"
+    },
+    {
+      "name": "RTO, tn38@nic.in"
+    },
+    {
+      "name": "RTO, Tiruppur North"
+    },
+    {
+      "name": "RTO, tn39@nic.in"
+    },
+    {
+      "name": "RTO, tn39z@nic.in"
+    },
+    {
+      "name": "RTO, Mettupalayam"
+    },
+    {
+      "name": "RTO, tn40@nic.in"
+    },
+    {
+      "name": "RTO, Pollachi"
+    },
+    {
+      "name": "RTO, tn41@nic.in"
+    },
+    {
+      "name": "RTO, tn41w@nic.in"
+    },
+    {
+      "name": "RTO, Tiruppur South"
+    },
+    {
+      "name": "RTO, tn42@nic.in"
+    },
+    {
+      "name": "RTO, tn42y@nic.in"
+    },
+    {
+      "name": "RTO, Ooty"
+    },
+    {
+      "name": "RTO, tn43@nic.in"
+    },
+    {
+      "name": "RTO, tn43z@nic.in"
+    },
+    {
+      "name": "RTO, Coimbatore - Central"
+    },
+    {
+      "name": "RTO, tn66@nic.in"
+    },
+    {
+      "name": "RTO, Dharapuram"
+    },
+    {
+      "name": "RTO, tn78@nic.in"
+    },
+    {
+      "name": "RTO, Udumalpet"
+    },
+    {
+      "name": "RTO, tn78z@nic.in"
+    },
+    {
+      "name": "RTO, Coimbatore - West"
+    },
+    {
+      "name": "RTO, tn99@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement- Coimbatore"
+    },
+    {
+      "name": "RTO, Tiruchirapalli (West)"
+    },
+    {
+      "name": "RTO, tn45@nic.in"
+    },
+    {
+      "name": "RTO, Perambalur"
+    },
+    {
+      "name": "RTO, Karur"
+    },
+    {
+      "name": "RTO, tn45z@nic.in"
+    },
+    {
+      "name": "RTO, tn46@nic.in"
+    },
+    {
+      "name": "RTO, tn47@nic.in"
+    },
+    {
+      "name": "RTO, tn47x@nic.in"
+    },
+    {
+      "name": "RTO, tn47y@nic.in"
+    },
+    {
+      "name": "RTO, tn47z@nic.in"
+    },
+    {
+      "name": "RTO, Srirangam"
+    },
+    {
+      "name": "RTO, tn48x@nic.in"
+    },
+    {
+      "name": "RTO, tn48y@nic.in"
+    },
+    {
+      "name": "RTO, tn48z@nic.in"
+    },
+    {
+      "name": "RTO, Ariyalur"
+    },
+    {
+      "name": "RTO, tn61@nic.in"
+    },
+    {
+      "name": "RTO, Tiruchirapalli (East)"
+    },
+    {
+      "name": "RTO, EnforcementTIRUCHIRAPALLI"
+    },
+    {
+      "name": "RTO, Enforcement at JTC (E)"
+    },
+    {
+      "name": "RTO, tn48@nic.in"
+    },
+    {
+      "name": "RTO, tn81@nic.in"
+    },
+    {
+      "name": "RTO, tn81z@nic.in"
+    },
+    {
+      "name": "RTO, Thanjavur"
+    },
+    {
+      "name": "RTO, tn49@nic.in"
+    },
+    {
+      "name": "RTO, tn49y@nic.in"
+    },
+    {
+      "name": "RTO, Thiruvarur"
+    },
+    {
+      "name": "RTO, tn50@nic.in"
+    },
+    {
+      "name": "RTO, tn50y@nic.in"
+    },
+    {
+      "name": "RTO, tn50z@nic.in"
+    },
+    {
+      "name": "RTO, Nagapattinam"
+    },
+    {
+      "name": "RTO, tn51@nic.in"
+    },
+    {
+      "name": "RTO, Pudukottai"
+    },
+    {
+      "name": "RTO, tn55@nic.in"
+    },
+    {
+      "name": "RTO, tn55y@nic.in"
+    },
+    {
+      "name": "RTO, tn55z@nic.in"
+    },
+    {
+      "name": "RTO, pdk.transdpt@tn.gov"
+    },
+    {
+      "name": "RTO, Kumbakonam"
+    },
+    {
+      "name": "RTO, tn68@nic.in"
+    },
+    {
+      "name": "RTO, Mayiladuturai"
+    },
+    {
+      "name": "RTO, tn82@nic.in"
+    },
+    {
+      "name": "RTO, tn82z@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement - Thanjavur"
+    },
+    {
+      "name": "RTO, Dindigul"
+    },
+    {
+      "name": "RTO, tn57@nic.in"
+    },
+    {
+      "name": "RTO, tn57v@nic.in"
+    },
+    {
+      "name": "RTO, tn57w@nic.in"
+    },
+    {
+      "name": "RTO, tn57@nic.in"
+    },
+    {
+      "name": "RTO, Madurai South"
+    },
+    {
+      "name": "RTO, tn58@nic.in"
+    },
+    {
+      "name": "RTO, -tn58y@nic.in"
+    },
+    {
+      "name": "RTO, tn58z@nic.in"
+    },
+    {
+      "name": "RTO, Madurai North"
+    },
+    {
+      "name": "RTO, tn59@nic.in"
+    },
+    {
+      "name": "RTO, tn59v@nic.in"
+    },
+    {
+      "name": "RTO, tn59w@nic.in"
+    },
+    {
+      "name": "RTO, Theni"
+    },
+    {
+      "name": "RTO, tn60@nic.in"
+    },
+    {
+      "name": "RTO, tn60Z@nic.in"
+    },
+    {
+      "name": "RTO, Madurai Central"
+    },
+    {
+      "name": "RTO, tn64@nic.in"
+    },
+    {
+      "name": "RTO, Palani"
+    },
+    {
+      "name": "RTO, tn57z@nic.in"
+    },
+    {
+      "name": "RTO, tn57r@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement- Madurai"
+    },
+    {
+      "name": "RTO, Sivagangai"
+    },
+    {
+      "name": "RTO, tn63@nic.in"
+    },
+    {
+      "name": "RTO, tn63z@nic.in"
+    },
+    {
+      "name": "RTO, Ramnad"
+    },
+    {
+      "name": "RTO, tn65@nic.in"
+    },
+    {
+      "name": "RTO, tn65z@nic.in"
+    },
+    {
+      "name": "RTO, Virudhunagar"
+    },
+    {
+      "name": "RTO, tn67@nic.in"
+    },
+    {
+      "name": "RTO, tn67w@nic.in"
+    },
+    {
+      "name": "RTO, Srivilliputhur"
+    },
+    {
+      "name": "RTO, tn84@nic.in"
+    },
+    {
+      "name": "RTO, Sivakasi"
+    },
+    {
+      "name": "RTO, .tn95@nic.in"
+    },
+    {
+      "name": "RTO, Enforcement Virudhunagar"
+    },
+    {
+      "name": "RTO, Thoothukudi"
+    },
+    {
+      "name": "RTO, tn69@nic.in"
+    },
+    {
+      "name": "RTO, Tirunelveli"
+    },
+    {
+      "name": "RTO, tn72@nic.in"
+    },
+    {
+      "name": "RTO, tn72v@nic.in"
+    },
+    {
+      "name": "RTO, tn76v@nic.in"
+    },
+    {
+      "name": "RTO, Nagercoil"
+    },
+    {
+      "name": "RTO, tn74@nic.in"
+    },
+    {
+      "name": "RTO, Marthandam"
+    },
+    {
+      "name": "RTO, tn75@nic.in"
+    },
+    {
+      "name": "RTO, Thenkasi"
+    },
+    {
+      "name": "RTO, tn76@nic.in"
+    },
+    {
+      "name": "RTO, Sankaran Koil"
+    },
+    {
+      "name": "RTO, tn79@nic.in"
+    },
+    {
+      "name": "RTO, Tiruchendur"
+    },
+    {
+      "name": "RTO, tn69y@nic.in"
+    },
+    {
+      "name": "RTO, Kovilpatti"
+    },
+    {
+      "name": "RTO, tn69z@nic.in"
+    },
+    {
+      "name": "RTO, office"
+    },
+    {
+      "name": "RTO, s)(G.O.Ms.No.1, Home"
+    },
+    {
+      "name": "RTO, Sholinganallur"
+    },
+    {
+      "name": "RTO, Chennai"
+    },
+    {
+      "name": "RTO, announced"
+    },
+    {
+      "name": "RTO, functioning from"
+    },
+    {
+      "name": "RTO, Offices"
+    },
+    {
+      "name": "RTO, Offices"
+    },
+    {
+      "name": "RTO, – 9"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, Office:9 Unit Office: 54 Checkpost: 22"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 5"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, Office"
+    },
+    {
+      "name": "RTO, – 9"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, – 11"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 7"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 6"
+    },
+    {
+      "name": "RTO, – 5"
+    },
+    {
+      "name": "RTO, – 8"
+    },
+    {
+      "name": "RTO, Chennai South East"
+    },
+    {
+      "name": "RTO, Kundrathur"
+    },
+    {
+      "name": "RTO, Meenambakkam"
+    },
+    {
+      "name": "RTO, Chennai (north)"
+    },
+    {
+      "name": "RTO, Chennai (South West)"
+    },
+    {
+      "name": "RTO, Coimbatore (North)"
+    },
+    {
+      "name": "RTO, Coimbatore (South)"
+    },
+    {
+      "name": "RTO, Tambaram"
+    },
+    {
+      "name": "RTO, Perundurai"
+    },
+    {
+      "name": "RTO, Coimbatore (South)"
+    },
+    {
+      "name": "RTO, Tambaram, Meenambakkam, Sholinganallur and Kundrathur not included in chennai city"
+    }
+  ],
+  "vehicleStatistics": {
+    "totalVehicles": "2857",
+    "year": null,
+    "categories": {},
+    "permitData": []
+  }
+}
