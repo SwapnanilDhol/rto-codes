@@ -371,12 +371,18 @@ export default function Home() {
                   Search {siteStats.totalCodes} India vehicle registration codes across {siteStats.totalStates} states and union territories.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-end gap-2">
                 <Link
                   href="/guides"
                   className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
                 >
                   Guides
+                </Link>
+                <Link
+                  href="/cities"
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
+                >
+                  Cities
                 </Link>
                 <Link
                   href="/states"
@@ -389,6 +395,12 @@ export default function Home() {
                   className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
                 >
                   Codes
+                </Link>
+                <Link
+                  href="/services"
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
+                >
+                  Services
                 </Link>
                 <button
                   onClick={() => {

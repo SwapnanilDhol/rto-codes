@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import IndianPlate from "@/components/IndianPlate";
+import { getCitiesByStateCode } from "@/data/cities";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { guides } from "@/data/guides";
 import { getRuleByStateCode } from "@/data/state-rules";
@@ -63,6 +64,7 @@ export default async function StatePage({ params }: StatePageProps) {
   const note = getStateNote({ code: state.code, name: state.name, entries: state.districts });
   const sampleCodes = state.districts.slice(0, 8);
   const relatedGuides = guides.slice(0, 3);
+  const relatedCities = getCitiesByStateCode(state.code);
   const stateRule = getRuleByStateCode(state.code);
   const wikiUrl = `https://en.wikipedia.org/wiki/${
     WIKI_TITLE_MAP[state.code] ?? state.name.replace(/\s+/g, "_")
@@ -241,23 +243,47 @@ export default async function StatePage({ params }: StatePageProps) {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-            <h2 className="text-xl font-semibold tracking-[-0.03em]">Related guides</h2>
-            <div className="mt-5 grid gap-3">
-              {relatedGuides.map((guide) => (
-                <Link
-                  key={guide.slug}
-                  href={`/guides/${guide.slug}`}
-                  className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
-                >
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                    {guide.eyebrow}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
-                    {guide.title}
-                  </p>
-                </Link>
-              ))}
+          <div className="grid gap-6">
+            {relatedCities.length > 0 ? (
+              <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
+                <h2 className="text-xl font-semibold tracking-[-0.03em]">Related city pages</h2>
+                <div className="mt-5 grid gap-3">
+                  {relatedCities.map((cityPage) => (
+                    <Link
+                      key={cityPage.slug}
+                      href={`/cities/${cityPage.slug}`}
+                      className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
+                    >
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                        {cityPage.eyebrow}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
+                        {cityPage.title}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            <div className="rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
+              <h2 className="text-xl font-semibold tracking-[-0.03em]">Related guides</h2>
+              <div className="mt-5 grid gap-3">
+                {relatedGuides.map((guide) => (
+                  <Link
+                    key={guide.slug}
+                    href={`/guides/${guide.slug}`}
+                    className="rounded-[18px] border border-slate-200/80 bg-white/80 px-4 py-3 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-sky-400/40"
+                  >
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                      {guide.eyebrow}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
+                      {guide.title}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>

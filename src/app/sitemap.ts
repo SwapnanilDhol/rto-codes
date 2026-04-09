@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
+import { cityPages } from "@/data/cities";
 import { guides } from "@/data/guides";
+import { servicePages } from "@/data/services";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { stateRules } from "@/data/state-rules";
 import { siteConfig } from "@/lib/site";
@@ -38,6 +40,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${siteConfig.url}/cities`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.88,
+    },
+    {
+      url: `${siteConfig.url}/services`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.88,
+    },
+    {
       url: `${siteConfig.url}/rules/states`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
@@ -54,6 +68,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...cityPages.map((cityPage) => ({
+      url: `${siteConfig.url}/cities/${cityPage.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...servicePages.map((servicePage) => ({
+      url: `${siteConfig.url}/services/${servicePage.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.78,
     })),
     ...getAllCodeRecords().map(({ district }) => ({
       url: `${siteConfig.url}/codes/${getCodeSlug(district.rtoCode)}`,

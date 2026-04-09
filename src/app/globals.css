@@ -11,6 +11,8 @@
   --background: #fafafa;
   --foreground: #09090b;
   --panel: rgba(255, 255, 255, 0.06);
+  --font-geist-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-geist-mono: "SFMono-Regular", ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
 }
 
 .dark {

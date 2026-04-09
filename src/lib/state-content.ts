@@ -64,6 +64,10 @@ export function getStateBySlug(slug: string) {
   return indiaStatesWithDistricts.find((state) => getStateSlug(state) === slug) ?? null;
 }
 
+export function getStateByCode(code: string) {
+  return indiaStatesWithDistricts.find((state) => state.code === code) ?? null;
+}
+
 export type CodeRecord = {
   state: State;
   district: State["districts"][number];
