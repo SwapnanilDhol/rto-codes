@@ -3,10 +3,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig, siteStats } from "@/lib/site";
 import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
+import { featuredGuides } from "@/data/guides";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { indiaStatesGeoJSON } from "@/data/loader";
 import { RTOFeature } from "@/types/rto";
@@ -550,37 +552,45 @@ export default function Home() {
                   Search {siteStats.totalCodes} India vehicle registration codes across {siteStats.totalStates} states and union territories.
                 </p>
               </div>
-              <button
-                onClick={() => {
-                  trackEvent("toggle_theme", {
-                    theme: theme === "dark" ? "light" : "dark",
-                  });
-                  toggleTheme();
-                }}
-                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-                title={theme === "dark" ? "Light mode" : "Dark mode"}
-                className={`cursor-pointer rounded-xl border p-2.5 transition ${searchClass}`}
-              >
-                {theme === "dark" ? (
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M12 3v2.25M12 18.75V21M4.72 4.72l1.59 1.59M17.69 17.69l1.59 1.59M3 12h2.25M18.75 12H21M4.72 19.28l1.59-1.59M17.69 6.31l1.59-1.59M15.75 12A3.75 3.75 0 118.25 12a3.75 3.75 0 017.5 0z"
-                    />
-                  </svg>
-                ) : (
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.8}
-                      d="M21 12.8A9 9 0 1111.2 3a7.5 7.5 0 009.8 9.8z"
-                    />
-                  </svg>
-                )}
-              </button>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/guides"
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-xs font-medium transition ${idleClass}`}
+                >
+                  Guides
+                </Link>
+                <button
+                  onClick={() => {
+                    trackEvent("toggle_theme", {
+                      theme: theme === "dark" ? "light" : "dark",
+                    });
+                    toggleTheme();
+                  }}
+                  aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                  title={theme === "dark" ? "Light mode" : "Dark mode"}
+                  className={`cursor-pointer rounded-xl border p-2.5 transition ${searchClass}`}
+                >
+                  {theme === "dark" ? (
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.8}
+                        d="M12 3v2.25M12 18.75V21M4.72 4.72l1.59 1.59M17.69 17.69l1.59 1.59M3 12h2.25M18.75 12H21M4.72 19.28l1.59-1.59M17.69 6.31l1.59-1.59M15.75 12A3.75 3.75 0 118.25 12a3.75 3.75 0 017.5 0z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.8}
+                        d="M21 12.8A9 9 0 1111.2 3a7.5 7.5 0 009.8 9.8z"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
 
             <div className={`mt-4 flex items-center gap-3 rounded-[18px] border px-4 py-3 ${searchClass}`}>
@@ -739,6 +749,41 @@ export default function Home() {
                           </div>
                         </section>
                       ) : null}
+
+                      <section className="mt-5">
+                        <div className="flex items-center justify-between gap-3 px-1 pb-2">
+                          <p className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${mutedLabelClass}`}>
+                            Reference guides
+                          </p>
+                          <Link
+                            href="/guides"
+                            className={`cursor-pointer text-[11px] font-medium transition ${
+                              theme === "dark" ? "text-slate-400 hover:text-sky-300" : "text-slate-500 hover:text-sky-700"
+                            }`}
+                          >
+                            View all
+                          </Link>
+                        </div>
+                        <div className="space-y-2">
+                          {featuredGuides.slice(0, 3).map((guide) => (
+                            <Link
+                              key={guide.slug}
+                              href={`/guides/${guide.slug}`}
+                              className={`block cursor-pointer rounded-[18px] border px-4 py-3 text-left transition duration-200 ${idleClass}`}
+                            >
+                              <p className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${mutedLabelClass}`}>
+                                {guide.eyebrow}
+                              </p>
+                              <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
+                                {guide.title}
+                              </p>
+                              <p className={`mt-1 text-xs leading-6 ${mutedTextClass}`}>
+                                {guide.description}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+                      </section>
                     </>
                   )}
                 </motion.section>
