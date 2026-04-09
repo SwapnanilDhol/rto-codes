@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import IndianPlate from "@/components/IndianPlate";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { guides } from "@/data/guides";
+import { getRuleByStateCode } from "@/data/state-rules";
 import { siteConfig } from "@/lib/site";
 import { getCodeUrl, getStateBySlug, getStateChipLabel, getStateNote, getStateSlug, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 
@@ -62,6 +63,7 @@ export default async function StatePage({ params }: StatePageProps) {
   const note = getStateNote({ code: state.code, name: state.name, entries: state.districts });
   const sampleCodes = state.districts.slice(0, 8);
   const relatedGuides = guides.slice(0, 3);
+  const stateRule = getRuleByStateCode(state.code);
   const wikiUrl = `https://en.wikipedia.org/wiki/${
     WIKI_TITLE_MAP[state.code] ?? state.name.replace(/\s+/g, "_")
   }`;
@@ -202,6 +204,14 @@ export default async function StatePage({ params }: StatePageProps) {
             <p className="mt-3 text-[15px] leading-8 text-amber-950/85 dark:text-amber-50/88">
               {note.text}
             </p>
+            {stateRule ? (
+              <Link
+                href={`/rules/states/${stateRule.slug}`}
+                className="mt-4 inline-flex rounded-full border border-amber-400/30 bg-white/50 px-4 py-2 text-sm font-medium text-amber-900 transition hover:border-amber-500 hover:bg-white/70 dark:border-amber-300/20 dark:bg-amber-50/5 dark:text-amber-100 dark:hover:border-amber-300/40"
+              >
+                Read the full {state.name} rule page
+              </Link>
+            ) : null}
           </section>
         ) : null}
 

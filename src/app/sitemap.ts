@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { guides } from "@/data/guides";
 import { indiaStatesWithDistricts } from "@/data/districts";
+import { stateRules } from "@/data/state-rules";
 import { siteConfig } from "@/lib/site";
 import { getAllCodeRecords, getCodeSlug, getStateSlug } from "@/lib/state-content";
 
@@ -36,11 +37,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
+    {
+      url: `${siteConfig.url}/rules/states`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
     ...indiaStatesWithDistricts.map((state) => ({
       url: `${siteConfig.url}/states/${getStateSlug(state)}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.85,
+    })),
+    ...stateRules.map((rule) => ({
+      url: `${siteConfig.url}/rules/states/${rule.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...getAllCodeRecords().map(({ district }) => ({
       url: `${siteConfig.url}/codes/${getCodeSlug(district.rtoCode)}`,

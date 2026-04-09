@@ -11,6 +11,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
 import { featuredGuides } from "@/data/guides";
 import { indiaStatesWithDistricts } from "@/data/districts";
+import { getRuleByStateCode } from "@/data/state-rules";
 import { indiaStatesGeoJSON } from "@/data/loader";
 import { RTOFeature } from "@/types/rto";
 
@@ -298,6 +299,7 @@ export default function Home() {
       }`
     : "#";
   const stateNote = getStateNote(selectedState ?? undefined);
+  const stateRule = selectedState ? getRuleByStateCode(selectedState.code) : null;
   const hoveredStateLookup = hoveredState ? stateByCode.get(hoveredState.stateCode) : null;
   const sidebarTransition = {
     type: "spring" as const,
@@ -735,6 +737,18 @@ export default function Home() {
                           >
                             {stateNote.text}
                           </p>
+                          {stateRule ? (
+                            <Link
+                              href={`/rules/states/${stateRule.slug}`}
+                              className={`mt-3 inline-flex cursor-pointer rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                                theme === "dark"
+                                  ? "border-amber-300/20 bg-amber-50/5 text-amber-100 hover:border-amber-300/40"
+                                  : "border-amber-400/30 bg-white/70 text-amber-900 hover:border-amber-500"
+                              }`}
+                            >
+                              Read full rule page
+                            </Link>
+                          ) : null}
                         </div>
                       </div>
                     </div>
