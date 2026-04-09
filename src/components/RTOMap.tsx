@@ -78,6 +78,8 @@ function RTOMap({
       ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
       : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png";
 
+  const geoJsonRef = useRef<L.GeoJSON | null>(null);
+
   const featureStyle = useMemo(
     () => ({
       base:
@@ -138,13 +140,37 @@ function RTOMap({
     return featureStyle.base;
   };
 
+  const isFeatureSelected = (feature: RTOFeature) =>
+    selectedRTO?.properties.id === feature.properties.id;
+
+  useEffect(() => {
+    const layerGroup = geoJsonRef.current;
+    if (!layerGroup) return;
+
+    layerGroup.eachLayer((layer) => {
+      const feature = (layer as Layer & { feature?: RTOFeature }).feature;
+      if (!feature) return;
+
+      const path = layer as L.Path;
+      const selected = isFeatureSelected(feature);
+      path.setStyle(getFeatureStyle(feature, false, selected));
+
+      if (selected) {
+        path.bringToFront();
+      }
+    });
+  }, [selectedRTO, featureStyle]);
+
   const onEachFeature = (feature: RTOFeature, layer: Layer) => {
     const path = layer as L.Path;
-    const isSelected = selectedRTO?.properties.id === feature.properties.id;
+    const isSelected = isFeatureSelected(feature);
     path.setStyle(getFeatureStyle(feature, false, isSelected));
+    if ("options" in path) {
+      path.options.className = "cursor-pointer";
+    }
 
     const updateHover = (event: LeafletMouseEvent) => {
-      const selected = selectedRTO?.properties.id === feature.properties.id;
+      const selected = isFeatureSelected(feature);
       path.setStyle(getFeatureStyle(feature, true, selected));
       path.bringToFront();
       onRTOHover?.(feature, {
@@ -157,7 +183,7 @@ function RTOMap({
       mouseover: updateHover,
       mousemove: updateHover,
       mouseout: () => {
-        const selected = selectedRTO?.properties.id === feature.properties.id;
+        const selected = isFeatureSelected(feature);
         path.setStyle(getFeatureStyle(feature, false, selected));
         onRTOHover?.(null, undefined);
       },
@@ -191,11 +217,12 @@ function RTOMap({
       />
       <MapController selectedRTO={selectedRTO} />
       <GeoJSON
+        ref={geoJsonRef}
         key={theme}
         data={data}
         style={(feature) => {
           const currentFeature = feature as RTOFeature;
-          const isSelected = selectedRTO?.properties.id === currentFeature.properties.id;
+          const isSelected = isFeatureSelected(currentFeature);
           return getFeatureStyle(currentFeature, false, isSelected);
         }}
         onEachFeature={onEachFeature}
