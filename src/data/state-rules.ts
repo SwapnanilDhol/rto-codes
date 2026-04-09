@@ -27,42 +27,41 @@ export const stateRules: StateRule[] = [
     eyebrow: "Delhi rule page",
     title: "Delhi vehicle registration format",
     description:
-      "Understand Delhi registration marks, zonal office codes, and why Delhi examples sometimes show vehicle-class letters like C or S.",
+      "A practical guide to Delhi registration numbers, zonal office codes, and the format patterns that make DL plates more noticeable than many other state families.",
     intro:
-      "Delhi is one of the most frequently searched state prefixes because people see DL plates constantly and then notice that the format can look slightly different from ordinary state examples. This page exists to explain that difference clearly.",
+      "Delhi registration numbers are widely recognized, but they also create more format-related questions than many other state families. The reason is simple: Delhi uses zonal office codes, and the examples people see on real vehicles often make them notice the internal series structure more closely.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why Delhi looks different to users",
+        title: "How Delhi registration numbers are structured",
         body: [
-          "Delhi registrations are familiar enough that users often notice the variation inside the series itself. The common confusion is not the DL prefix; it is the letter segment that appears in example registrations.",
-          "This is why Delhi deserves a dedicated rule page instead of being treated as just another state prefix list.",
+          "Delhi uses the DL prefix, followed by a zonal office code and then the remaining registration series. That means the office number immediately after DL is not just decorative. It is the part that places the registration within the Delhi office structure.",
+          "For practical lookup, this is the most important difference between a Delhi plate and a casual reading of a generic state-plus-district model.",
         ],
       },
       {
-        title: "The zonal code still matters",
+        title: "Why Delhi examples often look different",
         body: [
-          "The numeric office block still anchors the local registration context, but Delhi searches often go one level deeper because users compare code examples directly from plates they have seen.",
-          "For RTO.codes, Delhi is a strong query class because it blends lookup intent with format-explainer intent.",
+          "Users frequently notice Delhi examples because the series letters are more visible in everyday discussion and on-road examples. As a result, Delhi searches often become format questions rather than simple 'which state is this' lookups.",
         ],
       },
       {
-        title: "What users usually want from this page",
+        title: "What users should focus on",
         body: [
-          "They want to understand what the letters mean, whether the format is valid, and how the DL family differs from a simpler state-office pattern.",
+          "The correct approach is to identify the zonal office code first and then read the remaining series in context. That gives a more accurate answer than treating the plate as if it followed a simpler district-style structure.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Why do some Delhi examples show a letter like C or S?",
+        question: "Why do Delhi plates often attract format-related searches?",
         answer:
-          "Because Delhi examples often surface class-linked lettering in practical registration examples, which is one reason DL searches are more format-sensitive than many other state prefixes.",
+          "Because users see Delhi registrations frequently and notice the internal series structure more readily than they do in many other state families.",
       },
       {
-        question: "Is DL still the main state family for Delhi vehicles?",
+        question: "What matters most after identifying the DL prefix?",
         answer:
-          "Yes. DL remains the vehicle registration family for Delhi, with internal office and series distinctions underneath it.",
+          "The zonal office code is the next meaningful part because it locates the registration within the Delhi transport office structure.",
       },
     ],
   },
@@ -72,28 +71,27 @@ export const stateRules: StateRule[] = [
     eyebrow: "Telangana rule page",
     title: "Telangana TS vs TG explained",
     description:
-      "A focused explainer on Telangana registration marks, why TS and TG both appear, and how users should interpret the difference.",
+      "Understand why Telangana plates may appear as TS or TG and how users should interpret both marks in real-world vehicle lookups.",
     intro:
-      "Telangana is one of the clearest rule-driven search topics for this project because users encounter both TS and TG and want to know whether one is old, one is current, or whether both remain relevant.",
+      "Telangana is one of the clearest examples of a state registration question being driven by a rule change rather than by the office code itself. Users see TS on existing vehicles, TG in newer references, and naturally want to know whether one is current, one is old, or both remain relevant in practice.",
     readingTime: "4 min read",
     sections: [
       {
         title: "Why both TS and TG appear",
         body: [
-          "The confusion comes from change over time. Users see one code in newer discussions and another on real vehicles, which makes the registration family feel inconsistent unless the site explains it directly.",
-          "This is exactly the kind of state-specific nuance that generic plate lookup sites miss.",
+          "The coexistence of TS and TG is the result of a change in the state mark over time. That means the confusion is real rather than cosmetic. Users are comparing what they see on actual vehicles with what they now see in newer references and notifications.",
         ],
       },
       {
-        title: "Why this matters for search",
+        title: "How users should read Telangana numbers now",
         body: [
-          "Some users search by the current code, some by the older or alternate code they saw on a vehicle, and some by the question itself. A dedicated Telangana rule page helps capture all three.",
+          "For practical lookup purposes, Telangana should be treated as one registration family with both TS and TG remaining relevant to real-world interpretation. A site that hides one of them entirely will produce avoidable confusion for users who are comparing older and newer references.",
         ],
       },
       {
-        title: "How RTO.codes should treat it",
+        title: "Why this matters more in Hyderabad and major city traffic",
         body: [
-          "The best UX is to show both references where relevant while making the state family itself unmistakably Telangana.",
+          "The state-mark question becomes especially visible in high-traffic urban settings because users see more registrations, compare more examples, and therefore notice the difference more quickly.",
         ],
       },
     ],
@@ -101,12 +99,12 @@ export const stateRules: StateRule[] = [
       {
         question: "Is TS or TG the current Telangana mark?",
         answer:
-          "Users should treat Telangana as a family where both TS and TG may be relevant in lookups, especially when comparing older vehicles with newer references.",
+          "For lookup purposes, users should understand Telangana through both TS and TG because real-world plates and current references can surface either mark depending on timing and context.",
       },
       {
-        question: "Why does this need a dedicated page?",
+        question: "Why does Telangana need a separate rule page?",
         answer:
-          "Because it is one of the few state registration topics where the rule change itself drives search intent.",
+          "Because the rule change itself drives user confusion and search behavior in a way that ordinary office-code pages do not fully solve.",
       },
     ],
   },
@@ -116,28 +114,27 @@ export const stateRules: StateRule[] = [
     eyebrow: "Odisha rule page",
     title: "Odisha OR vs OD explained",
     description:
-      "Understand why Odisha plates may show OR or OD, and how the renaming of the state changed the registration mark users see.",
+      "A practical guide to the OR versus OD question, including why older Odisha plates may still show OR and why current references use OD.",
     intro:
-      "Odisha is a textbook example of why old and new registration marks can coexist in public memory. Users see OR on older vehicles and OD in newer references, then search to understand whether both are valid.",
+      "Odisha is one of the clearest legacy-prefix questions in Indian vehicle registration. Users still encounter OR on older vehicles, while current references use OD. The confusion is understandable because both marks remain visible in public life even though they do not belong to the same administrative moment.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why OR and OD both appear",
+        title: "Why OR and OD both exist",
         body: [
-          "This is tied to the state's renaming from Orissa to Odisha. That kind of administrative change leaves a long tail of older real-world plates even after the newer mark becomes the reference standard.",
-          "That makes Odisha a valuable search topic because it combines lookup intent with historical-format intent.",
+          "The change is tied to the renaming of the state from Orissa to Odisha. Once the official state name changed, the current registration reference also changed, but older vehicles and public memory did not disappear overnight.",
         ],
       },
       {
-        title: "What users actually need",
+        title: "How users should interpret old and new plates",
         body: [
-          "They do not want a legal essay. They want a direct answer on why both marks exist and what they should treat as current versus legacy.",
+          "OD should be treated as the current family in modern references, while OR remains a legacy mark that may still be seen on existing vehicles or older discussions. In other words, the old mark still appears in the world, but it should not be mistaken for the current naming standard.",
         ],
       },
       {
-        title: "Why this page matters for the domain",
+        title: "Why this matters in a lookup",
         body: [
-          "It creates a high-quality state-specific search entry point that also supports code pages and the broader format explainers.",
+          "Without this explanation, users often assume one of the two marks must be invalid. The actual position is simpler: one is current, and the other remains visible because vehicle registration history persists in everyday traffic.",
         ],
       },
     ],
@@ -145,12 +142,12 @@ export const stateRules: StateRule[] = [
       {
         question: "Why do some Odisha vehicles still show OR?",
         answer:
-          "Because older registrations and public memory often preserve the legacy mark even after the state reference changed to OD.",
+          "Because older registrations and older plates can still remain on vehicles even after the state-family reference moved to OD.",
       },
       {
         question: "What should new Odisha lookups use?",
         answer:
-          "Users should primarily expect OD in the current state-family context, while still recognizing OR as a legacy reference they may see on existing vehicles.",
+          "Current Odisha lookups should primarily use OD while still recognizing OR as a legacy mark that may appear on older vehicles.",
       },
     ],
   },
@@ -160,28 +157,28 @@ export const stateRules: StateRule[] = [
     eyebrow: "Maharashtra rule page",
     title: "Maharashtra HSRP and RTO code guide",
     description:
-      "A Maharashtra-specific guide to MH registration codes, why the state has such a dense code network, and where HSRP-related intent fits in.",
+      "A practical guide to Maharashtra registration numbers, office-heavy MH code structure, and why HSRP questions are common for this state family.",
     intro:
-      "Maharashtra is one of the strongest traffic states for the domain because MH appears constantly in the wild and the code family is broad enough that users need both lookup help and compliance context.",
+      "Maharashtra is one of the largest and most heavily searched registration families in the country. Users regularly search MH numbers to identify a city or office, and just as often they move from the code question into an HSRP or plate-compliance question. That makes Maharashtra a natural state for a combined rule page.",
     readingTime: "5 min read",
     sections: [
       {
-        title: "Why Maharashtra is high-value",
+        title: "How the MH family is organized",
         body: [
-          "MH is large, dense, and familiar. Users search Maharashtra because they need to decode a specific office code, compare city-level entries, or understand registration compliance questions tied to a major state.",
-          "That gives Maharashtra both SEO depth and commercial relevance later.",
+          "The Maharashtra registration family is office-heavy. Once the MH prefix is identified, the office code becomes the meaningful part of the interpretation because the state spans a large number of active registration offices.",
+          "This is why a generic 'MH means Maharashtra' answer is rarely enough for users who are trying to decode a real vehicle number.",
         ],
       },
       {
-        title: "How the MH family behaves",
+        title: "Why Maharashtra often leads to HSRP questions",
         body: [
-          "The state prefix is simple, but the office network is extensive. That means the numeric segment does more of the practical work once users are inside the MH ladder.",
+          "Maharashtra has high registration volume, wide urban visibility, and frequent practical questions around plate replacement, compliance, and vehicle documentation. As a result, users often move from an MH code lookup into an HSRP or document-readiness question almost immediately.",
         ],
       },
       {
-        title: "Why HSRP matters here",
+        title: "How users should read an MH plate",
         body: [
-          "Maharashtra is a natural place to connect registration lookups with HSRP explainers because the user intent often shifts from code decoding into compliance or replacement questions.",
+          "Start with the office code, not the city guess. Large cities such as Mumbai and Pune generate strong search intent, but the reliable interpretation still comes from the office number in the registration itself.",
         ],
       },
     ],
@@ -189,12 +186,12 @@ export const stateRules: StateRule[] = [
       {
         question: "Why does Maharashtra need a separate rule page?",
         answer:
-          "Because MH is a large, high-recognition state family with both broad code coverage and strong compliance-related search intent.",
+          "Because MH is a large, office-dense registration family and users often need both code-level interpretation and plate-compliance context.",
       },
       {
-        question: "What should users focus on inside MH codes?",
+        question: "What should users focus on inside MH registrations?",
         answer:
-          "Once the MH prefix is known, the office number is the key part for practical identification.",
+          "After identifying MH, the office code is the most useful part of the plate because it narrows the registration to the issuing office family.",
       },
     ],
   },
@@ -204,41 +201,40 @@ export const stateRules: StateRule[] = [
     eyebrow: "Tamil Nadu rule page",
     title: "Tamil Nadu RTO code pattern",
     description:
-      "A Tamil Nadu-specific guide to the TN registration ladder, major office density, and how users should interpret the sequence.",
+      "A guide to how the TN registration family is structured, why Chennai occupies so many familiar office codes, and how users should interpret the wider sequence.",
     intro:
-      "Tamil Nadu is one of the strongest structured code families in the dataset. Users often search TN prefixes because the ladder is long, busy, and strongly associated with major urban office clusters.",
+      "Tamil Nadu is one of the most sequence-heavy registration families in the dataset. Users often recognize the TN prefix immediately, but what they really need is help understanding where the office number sits in the broader state ladder and why Chennai dominates so many familiar entries.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why TN is sequence-driven",
+        title: "Why the TN sequence matters",
         body: [
-          "Tamil Nadu searches are often about where a number sits inside the broader ladder rather than just what the state prefix means.",
-          "That makes TN a good candidate for state-specific content because users need help interpreting the scale of the sequence.",
+          "Tamil Nadu is not a state where the prefix alone gives enough practical information. The office sequence is long and well populated, which means the office number is often the real key to useful interpretation.",
         ],
       },
       {
-        title: "What makes TN useful for SEO",
+        title: "Why Chennai appears so prominently",
         body: [
-          "Users search for Chennai-related code blocks, early-series registrations, and office-heavy parts of the state. The structure itself creates many long-tail opportunities.",
+          "Chennai and its surrounding suburban belt occupy a large number of the best-known TN office codes. That is why many users first learn the Tamil Nadu registration family through Chennai-related examples rather than through a statewide overview.",
         ],
       },
       {
-        title: "How this supports future pages",
+        title: "How to approach a TN lookup",
         body: [
-          "TN can later branch into city-heavy code pages, HSRP pages, and office-specific explainers around the busiest clusters.",
+          "Treat TN as a structured office ladder. Identify the exact code, then place it within the city cluster or the wider state sequence. That is more accurate than trying to interpret the plate from the prefix alone.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Why do Tamil Nadu code searches feel more detailed than some smaller states?",
+        question: "Why do TN searches feel more detailed than many other states?",
         answer:
-          "Because the TN family is long and dense enough that users often care about the internal office sequence, not just the state prefix.",
+          "Because Tamil Nadu uses a long, recognizable office ladder, so users often care about the exact office sequence rather than just the state prefix.",
       },
       {
-        question: "Is TN a good candidate for deeper city-level pages later?",
+        question: "Why does Chennai show up so often in TN-related searches?",
         answer:
-          "Yes. Tamil Nadu naturally supports future content around the busier office clusters and major urban code groups.",
+          "Because Chennai occupies a substantial and familiar portion of the Tamil Nadu office ladder, making it central to how users experience TN registrations.",
       },
     ],
   },
@@ -248,41 +244,40 @@ export const stateRules: StateRule[] = [
     eyebrow: "Karnataka rule page",
     title: "Karnataka and Bengaluru RTO codes",
     description:
-      "Understand Karnataka's KA registration family, why Bengaluru dominates searches, and how users should interpret the early KA office blocks.",
+      "A practical guide to Karnataka registration numbers, with a focus on why Bengaluru dominates user searches and how KA office codes should be interpreted.",
     intro:
-      "Karnataka is a strong state-specific query cluster because many people first encounter the KA family through Bengaluru. That creates a mix of state-level and city-level search intent that deserves its own page.",
+      "Karnataka registration lookups are often city-led. Many users first encounter the KA family through Bengaluru and only then move outward into the wider state structure. That makes Karnataka one of the clearest cases where state-level and city-level search intent overlap.",
     readingTime: "4 min read",
     sections: [
       {
         title: "Why Bengaluru dominates KA searches",
         body: [
-          "For many users, the Karnataka registration family is effectively introduced through Bengaluru. That means the state-level page has to explain both the broad KA prefix and the concentration of important early office blocks.",
-          "This is a good example of where state pages can later branch into city-specific search pages.",
+          "For many users, Karnataka registrations are visually associated with Bengaluru before they are associated with the rest of the state. That makes Bengaluru the practical gateway into the KA family for a large portion of search traffic.",
         ],
       },
       {
-        title: "How users read the KA family",
+        title: "How users should read the KA family",
         body: [
-          "Once users recognize KA, the office number becomes the meaningful differentiator. That is where Karnataka behaves like a mature, high-traffic registration family rather than a simple single-code region.",
+          "The KA prefix identifies Karnataka, but the office code is what turns the registration into a useful lookup. Users should therefore treat KA as the family and the following number as the actual office signal.",
         ],
       },
       {
-        title: "Why this page matters",
+        title: "Why the state page still matters",
         body: [
-          "Karnataka is valuable because the state-level page can capture broad queries while code pages absorb the more precise office-level searches.",
+          "Even when city searches dominate, the wider Karnataka page remains important because it gives context around the broader office structure. A city page can answer the fast query; the state page explains the family.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Why is Bengaluru so important in Karnataka code searches?",
+        question: "Why is Bengaluru so important in Karnataka registration searches?",
         answer:
-          "Because many of the most familiar and frequently encountered KA registrations are associated with Bengaluru office clusters.",
+          "Because many of the best-known KA registrations are associated with Bengaluru, so city-level recognition drives a large share of user curiosity.",
       },
       {
-        question: "What should users focus on after identifying KA?",
+        question: "What should users focus on after identifying the KA prefix?",
         answer:
-          "The numeric office block is the next step, because that is what differentiates the specific registration office inside Karnataka.",
+          "The office code is the next meaningful step because it determines where within Karnataka the registration belongs.",
       },
     ],
   },

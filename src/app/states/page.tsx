@@ -44,11 +44,11 @@ export default function StatesPage() {
               State directory
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-              State-specific RTO landing pages.
+              Browse RTO codes by state
             </h1>
             <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
-              Browse every state and union territory as its own landing page with prefix context, code counts, and
-              state-specific notes that can grow into deeper registration content later.
+              Explore every state and union territory by registration prefix, office count, and state-specific context,
+              then move into the detailed state page or the exact code you need.
             </p>
           </div>
 

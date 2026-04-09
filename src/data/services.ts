@@ -25,34 +25,42 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Compliance utility",
     title: "HSRP by state in India",
     description:
-      "Understand how to think about HSRP ordering, compliance, and state-level variation when you already know the registration family you are dealing with.",
+      "A state-aware guide to HSRP booking and replacement, including what owners should check before using a state transport portal or approved plate vendor.",
     intro:
-      "HSRP intent is one of the strongest adjacent use cases for this domain because users who decode a registration mark often want the next practical answer: whether the vehicle plate is compliant and where state-level ordering differences show up.",
+      "HSRP implementation is standardized in principle but operationally state-specific. Vehicle owners usually need the same three things before starting: the exact registration mark, the RC details, and the correct state booking path. This page is designed to help users prepare for that process properly.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why HSRP belongs next to the lookup",
+        title: "Why HSRP processes vary by state",
         body: [
-          "A plate lookup answers where a registration sits. HSRP content answers whether the physical plate itself is current, compliant, or due for replacement. Those two journeys are closely linked, which makes HSRP one of the best utility layers for the site.",
+          "The plate format itself is standardized, but booking, appointment, fitment, and duplicate-plate workflows are usually handled through state transport systems or approved vendors. That is why HSRP searches often become state-specific very quickly.",
+          "An owner who has identified the registration family correctly is already in a better position to use the correct booking path and avoid mismatch errors.",
         ],
       },
       {
-        title: "How users should use this page",
+        title: "What to keep ready before using a state portal",
         body: [
-          "Start by identifying the state prefix and local office family, then use that context to interpret state-specific ordering and compliance guidance. The lookup and the HSRP page should reinforce each other rather than compete.",
+          "The most important details are the registration number exactly as it appears on the RC, the chassis and engine details where required, and the owner information recorded in the vehicle record.",
+          "If the plate is damaged, replaced, or visibly inconsistent with the RC, it is better to verify the record first rather than proceeding on assumption.",
+        ],
+      },
+      {
+        title: "How to use this page with the lookup",
+        body: [
+          "Use the lookup to confirm the state family and office context first. Then use that information to move into the correct state HSRP workflow. That sequence is more reliable than starting from an uncertain registration number or an unofficial local plate vendor.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Why have an HSRP-by-state page if there is already a generic HSRP guide?",
+        question: "Why have an HSRP-by-state page if there is already a general HSRP guide?",
         answer:
-          "Because users quickly move from general understanding into state-specific action questions, and that intent is stronger than generic information intent.",
+          "Because most real HSRP decisions are state-specific. Owners usually need the state booking path and a clear understanding of what details must match the registration record.",
       },
       {
-        question: "Does this replace the main lookup?",
+        question: "Does this page replace the main lookup?",
         answer:
-          "No. The lookup helps identify the registration family; the HSRP page helps users act on the compliance side of that information.",
+          "No. The lookup helps identify the registration family. This page explains how that registration context becomes useful when an owner needs to order or replace an HSRP.",
       },
     ],
   },
@@ -61,21 +69,29 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Ownership utility",
     title: "Vehicle transfer and re-registration guide",
     description:
-      "A practical guide to the questions users ask when moving a vehicle between owners or between states, and where RTO code lookups fit into that process.",
+      "A practical guide to ownership transfer and re-registration questions, including why the original registration office still matters when a vehicle changes hands or moves across states.",
     intro:
-      "Transfer and re-registration are natural expansion areas because the user already has a vehicle identity problem in hand. They know the number plate, they know the state, and now they need process clarity.",
+      "Ownership transfer and re-registration are among the most common next-step questions after a plate lookup. Once a user knows the registration family and office, the next issue is usually procedural: transfer to another owner, update the record, or handle movement to another state correctly.",
     readingTime: "5 min read",
     sections: [
       {
-        title: "Why transfer intent is valuable",
+        title: "Where the original registration still matters",
         body: [
-          "Transfer and re-registration pages capture users who are much closer to action than generic plate-curiosity traffic. That is valuable for both product usefulness and future monetization.",
+          "The original registration family and office remain important because vehicle records, historical registration details, and ownership-change paperwork are tied to that official record. The plate does not become irrelevant just because the vehicle is being sold or moved.",
+          "That is why the first step in a transfer workflow is often not a form. It is confirming the existing registration correctly.",
         ],
       },
       {
-        title: "Where the lookup helps",
+        title: "When re-registration questions usually arise",
         body: [
-          "Knowing the originating state family and office series helps users orient themselves before they start dealing with document, transfer, or relocation questions. The lookup is the first layer, not the whole journey.",
+          "Users most often look for re-registration guidance when a vehicle moves to another state for long-term use or when they are trying to understand whether the existing record needs to be changed after a transfer.",
+          "The exact workflow depends on the legal and administrative facts of the case, but the recurring operational question is always the same: which office issued the registration and what record needs to be updated next.",
+        ],
+      },
+      {
+        title: "How to use this guide properly",
+        body: [
+          "Treat this page as a preparation guide. Confirm the existing registration details, identify the office family, and then move into the appropriate official transport workflow with the correct documents and expectations.",
         ],
       },
     ],
@@ -83,12 +99,12 @@ export const servicePages: ServicePage[] = [
       {
         question: "Why include transfer content on an RTO code site?",
         answer:
-          "Because users often decode a plate as the first step in a broader ownership or movement workflow.",
+          "Because a registration lookup is often the first step in a broader ownership or relocation workflow. Users need the existing registration context before they can handle the transfer correctly.",
       },
       {
-        question: "Is this only for interstate moves?",
+        question: "Is this page only for interstate movement?",
         answer:
-          "No. It is useful both for ownership transfers and for state-to-state registration changes.",
+          "No. It is useful for ordinary ownership transfer as well as for questions that arise when a vehicle is moved to another state.",
       },
     ],
   },
@@ -97,21 +113,29 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Road-use utility",
     title: "FASTag, toll, and road-trip readiness guide",
     description:
-      "A utility page for the practical vehicle-readiness topics that often sit next to registration, including toll-readiness and travel paperwork.",
+      "A practical guide to FASTag, toll-readiness, and the vehicle admin checks owners usually make before long-distance travel.",
     intro:
-      "This page broadens the domain from pure registration lookup into vehicle-readiness intent. That matters because many users do not think in category terms; they think in tasks like buying a used car, renewing documents, or preparing for a long drive.",
+      "Vehicle administration does not stop at the registration number. For many owners, the next practical questions involve toll-readiness, FASTag status, and whether the core vehicle documents are in order before a long trip.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why this topic belongs here",
+        title: "Why FASTag belongs in this workflow",
         body: [
-          "A registration lookup site does not have to stop at decoding. Once users trust the site for plate-related reference work, adjacent travel and toll-readiness content becomes a natural extension.",
+          "FASTag is part of day-to-day vehicle readiness rather than a separate technical topic. Once a vehicle is registered and road-ready, toll handling becomes part of ordinary use, especially for intercity travel.",
+          "That is why users often move from a registration question into a travel-readiness question in the same session.",
         ],
       },
       {
-        title: "How this can monetize later",
+        title: "What owners should check before a long drive",
         body: [
-          "FASTag and road-trip readiness content create cleaner affiliate opportunities than generic display ads because the user intent is immediately practical.",
+          "The essential checks are straightforward: registration details, FASTag status, insurance validity, PUC where applicable, and any other documents the owner expects to rely on during travel.",
+          "This is not about creating paperwork for its own sake. It is about reducing avoidable friction once the vehicle is already on the road.",
+        ],
+      },
+      {
+        title: "How this page should be used",
+        body: [
+          "Use it as a readiness checklist. The goal is not to replace an official toll or transport portal. The goal is to make sure the basic vehicle administration questions have already been handled before the trip begins.",
         ],
       },
     ],
@@ -119,12 +143,12 @@ export const servicePages: ServicePage[] = [
       {
         question: "Why combine FASTag and road-trip readiness?",
         answer:
-          "Because the same user often needs both kinds of answers in the same session, and both are adjacent to registration-driven vehicle admin.",
+          "Because they belong to the same practical moment. Users preparing a vehicle for travel usually need both toll-readiness and document readiness at the same time.",
       },
       {
-        question: "Does this depend on a specific state code?",
+        question: "Does this page depend on a specific state code?",
         answer:
-          "Not always, but it benefits from the registration context users already bring into the site.",
+          "Not always, but knowing the registration family still helps when an owner wants to verify that the vehicle record itself is correct before travel.",
       },
     ],
   },
@@ -133,21 +157,28 @@ export const servicePages: ServicePage[] = [
     eyebrow: "Document utility",
     title: "Insurance, PUC, and vehicle documents guide",
     description:
-      "A document-readiness guide for the recurring questions users have about insurance, PUC, and the paperwork that sits next to registration.",
+      "A practical guide to the core vehicle documents owners usually need to keep in order alongside the registration itself.",
     intro:
-      "Insurance and PUC content sits close to the same problem space as RTO codes: the user is trying to understand whether a vehicle is current, compliant, and administratively in order. That makes this a strong utility layer for the site.",
+      "A vehicle can have the correct registration number and still create problems for the owner if the supporting documents are not current. Insurance, PUC, and other routine vehicle records sit next to the registration in everyday compliance and road-use decisions.",
     readingTime: "4 min read",
     sections: [
       {
-        title: "Why document-readiness is a good expansion layer",
+        title: "Why the registration number is only one part of compliance",
         body: [
-          "It keeps the site adjacent to real vehicle administration rather than drifting into unrelated automotive content. That is the right expansion pattern if the goal is trust plus monetizable intent.",
+          "The registration identifies the vehicle, but everyday road use also depends on document readiness. Insurance, emission compliance where applicable, and core vehicle papers are part of the same practical compliance picture.",
+          "This is why a user often starts with a plate lookup and then immediately needs the surrounding document context as well.",
         ],
       },
       {
-        title: "How users arrive here",
+        title: "What owners typically keep ready",
         body: [
-          "Users often start with a plate lookup, then realize they need the surrounding compliance context too: insurance status, emission checks, or document validity. This page is designed for that second step.",
+          "At a practical level, owners usually need to keep the registration details, insurance status, and pollution certificate status aligned with the actual vehicle. The exact legal requirements can vary by vehicle type and situation, but the principle is consistent: the record should be current and usable when needed.",
+        ],
+      },
+      {
+        title: "How to use this page",
+        body: [
+          "Use this guide as a document-readiness reference. It is meant to help users think clearly about what belongs next to the registration in ordinary ownership and travel workflows.",
         ],
       },
     ],
@@ -155,12 +186,12 @@ export const servicePages: ServicePage[] = [
       {
         question: "Why cover insurance and PUC on this site?",
         answer:
-          "Because they are part of the same practical ownership and compliance workflow that begins with the registration itself.",
+          "Because registration, insurance, and emissions paperwork usually belong to the same real-world ownership workflow. Users often need all three answers together.",
       },
       {
-        question: "Is this meant to replace official government guidance?",
+        question: "Is this a substitute for official government or insurer guidance?",
         answer:
-          "No. It is meant to orient the user so they understand the problem space and can move into the right official or provider workflow next.",
+          "No. It is a practical reference page meant to help users understand the document landscape before they move to the relevant official or provider workflow.",
       },
     ],
   },

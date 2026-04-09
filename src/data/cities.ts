@@ -27,38 +27,40 @@ export const cityPages: CityPage[] = [
     slug: "delhi-rto-codes",
     city: "Delhi",
     stateCode: "DL",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Delhi RTO codes",
     description:
-      "Browse Delhi RTO codes across the official zonal ladder, with the Delhi-specific registration format context users usually need.",
+      "A Delhi-focused guide to DL registration numbers, including the zonal office codes most users encounter and the format details that make Delhi registrations distinctive.",
     intro:
-      "Delhi is one of the clearest metro landing pages for the domain because users search both for the zonal office ladder and for the letter-format quirks that show up on Delhi registrations.",
+      "Delhi registration numbers are unusually familiar because DL plates appear constantly in the city and surrounding NCR traffic. The practical question for most users is not what DL means. It is which zonal office the number belongs to and why Delhi registrations often look slightly different from examples in other states.",
     readingTime: "4 min read",
     featuredCodes: ["DL-01", "DL-02", "DL-03", "DL-04", "DL-05", "DL-06", "DL-07"],
     sections: [
       {
-        title: "Why Delhi deserves a city page",
+        title: "How Delhi registration numbers are organized",
         body: [
-          "Delhi searches are not generic state-prefix lookups. Users usually want one of two things: the zonal office behind a DL number, or an explanation of the letter segment seen on actual plates.",
-          "That makes Delhi one of the strongest city-heavy entry pages because it combines office lookup intent with format-explainer intent.",
+          "Delhi registrations are organized around zonal office codes rather than a simple district-style ladder. That is why the DL number immediately after the prefix matters so much: it points users toward the relevant zonal office family.",
+          "For everyday users, the practical outcome is that a Delhi number should be read as a zonal registration mark, not just as a generic city plate.",
         ],
       },
       {
-        title: "How to read the DL ladder",
+        title: "Why Delhi plates often attract extra attention",
         body: [
-          "The numeric block after DL points to the zonal office family. In practice, Delhi users compare these office numbers constantly because the city has dense on-road visibility and a relatively familiar registration family.",
+          "Delhi is one of the few registration families where users frequently notice format details beyond the state prefix. The examples seen on the road often include series patterns that make people compare Delhi against other states more closely.",
+          "That is why Delhi lookup intent often blends office lookup and format explanation in the same search.",
         ],
       },
     ],
     faqs: [
       {
-        question: "How many Delhi RTO codes are listed here?",
-        answer: "This page groups the seven Delhi zonal code blocks surfaced in the current official-safe mapping, from DL-01 through DL-07.",
+        question: "How many Delhi code blocks are listed here?",
+        answer:
+          "This page groups the seven Delhi zonal code blocks currently reflected in the official-safe mapping used by the site.",
       },
       {
-        question: "Why do Delhi plates sometimes look different from other states?",
+        question: "What matters most after identifying DL on a number plate?",
         answer:
-          "Delhi examples often surface extra letter-series context that users notice on real plates, so the city generates more format-related search intent than many other metros.",
+          "The zonal office code is the next meaningful part of the registration number because it narrows the plate into a specific Delhi office family.",
       },
     ],
   },
@@ -66,37 +68,39 @@ export const cityPages: CityPage[] = [
     slug: "bengaluru-rto-codes",
     city: "Bengaluru",
     stateCode: "KA",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Bengaluru RTO codes",
     description:
-      "Explore the Bengaluru-linked Karnataka RTO codes in the current dataset, including the KA series entries that users most often associate with Bangalore.",
+      "A Bengaluru-focused guide to the Karnataka registration family, highlighting the KA codes that users most often associate with Bangalore or Bengaluru.",
     intro:
-      "Bengaluru is a high-recognition city even when the dataset is authority-led rather than neighborhood-led. Users searching Bangalore or Bengaluru usually want to know which KA offices map to the city cluster they have in mind.",
+      "Bengaluru is one of the most searched city names in the Indian vehicle-registration space because many users first recognize Karnataka registrations through the city. This page is designed to group the Bengaluru-linked entries clearly and then connect users to the wider Karnataka registration family.",
     readingTime: "3 min read",
     featuredCodes: ["KA-02", "KA-03"],
     sections: [
       {
-        title: "How Bengaluru appears in this dataset",
+        title: "How Bengaluru appears in the current dataset",
         body: [
-          "The current Karnataka dataset ties Bengaluru to the Bangalore Rural and Bangalore Urban office entries. That is enough to justify a city page because user search demand is centered on the city label, not the administrative nuance.",
+          "The current Karnataka dataset maps Bengaluru through the Bangalore Rural and Bangalore Urban entries. Even though Karnataka as a whole needs deeper official verification before a full office-by-office rewrite, these entries are the ones most users currently associate with Bengaluru in the live directory.",
+          "This page therefore serves as a city-facing entry point while still acknowledging the broader KA family around it.",
         ],
       },
       {
-        title: "Why this page matters",
+        title: "How to use this page",
         body: [
-          "Bengaluru plate searches often come from curiosity after seeing KA numbers in the wild. A city page turns that vague recognition into a usable lookup entry point.",
+          "If a user already knows the registration begins with KA and is trying to place it within the Bengaluru cluster, this page is the fastest orientation layer. From here, the next step is the state page or the specific code page.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Which Bengaluru codes are surfaced here?",
-        answer: "The current dataset connects Bengaluru with KA-02 and KA-03 through the Bangalore Rural and Bangalore Urban entries.",
+        question: "Which Bengaluru-linked codes are currently listed here?",
+        answer:
+          "The current live dataset connects Bengaluru with KA-02 and KA-03 through the Bangalore Rural and Bangalore Urban entries.",
       },
       {
         question: "Why does the page use both Bangalore and Bengaluru language?",
         answer:
-          "Because users still search both variants heavily, and the registration lookup intent is the same either way.",
+          "Because both names remain common in user searches and everyday usage, and they point to the same registration-reference intent.",
       },
     ],
   },
@@ -104,39 +108,39 @@ export const cityPages: CityPage[] = [
     slug: "mumbai-rto-codes",
     city: "Mumbai",
     stateCode: "MH",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Mumbai RTO codes",
     description:
-      "Browse Mumbai RTO codes in the MH family, including the central, western, eastern, and wider metro-belt series that matter most for Mumbai plate lookups.",
+      "A Mumbai-focused guide to MH registration numbers, covering the city, suburban, and wider metro-belt office series that users most often search for.",
     intro:
-      "Mumbai is one of the highest-value city queries because users often know the city first and only then want the exact MH office code. That makes a metro-specific page more useful than forcing everything through the generic state page.",
-    readingTime: "3 min read",
+      "Mumbai registrations are best understood as a city cluster rather than a single office. In the official Maharashtra office ladder, the metropolitan area spans central, western, eastern, and wider suburban or satellite office groupings. That is why a dedicated Mumbai page is more useful than a single city row.",
+    readingTime: "4 min read",
     featuredCodes: ["MH-01", "MH-02", "MH-03", "MH-43", "MH-46", "MH-47", "MH-48"],
     sections: [
       {
-        title: "What this page covers",
+        title: "How Mumbai fits into the MH family",
         body: [
-          "The official-safe Maharashtra mapping groups Mumbai around the central, west, and east city offices, and also surfaces major metro-belt offices such as Vashi, Panvel, Borivali, and Vasai.",
-          "That gives users a direct metro-focused explanation instead of making them scan the broader Maharashtra list first.",
+          "The official Maharashtra registration ladder shows that Mumbai is not limited to one code. It sits across multiple office series, including Mumbai Central, West, East, and key metro-belt offices such as Vashi, Panvel, Borivali, and Vasai.",
+          "This is important because users often search for 'Mumbai RTO code' as if there were only one answer. In practice, the city and surrounding metropolitan region are spread across several office families.",
         ],
       },
       {
-        title: "Why Mumbai is commercially useful later",
+        title: "Why users should start with the office code",
         body: [
-          "Mumbai combines very strong recognition with compliance and service intent, which makes it a good candidate for later HSRP, transfer, and insurance-adjacent content.",
+          "Once the MH prefix is known, the office number becomes the useful part of the plate. That is especially true in Mumbai, where the metropolitan area is dense enough that the city label alone is not specific enough for a reliable interpretation.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Which Mumbai-linked codes are on this page?",
+        question: "Which Mumbai-linked codes are grouped on this page?",
         answer:
-          "The page currently groups MH-01, MH-02, MH-03, MH-43, MH-46, MH-47, and MH-48 as the main Mumbai and wider metro-belt cluster.",
+          "This page currently groups MH-01, MH-02, MH-03, MH-43, MH-46, MH-47, and MH-48 as the main Mumbai and wider metro-belt cluster.",
       },
       {
-        question: "Why have a Mumbai page if Maharashtra already exists?",
+        question: "Why is Mumbai not represented by a single MH code?",
         answer:
-          "Because many users search for Mumbai specifically, not for Maharashtra in general, and the metro page answers that intent directly.",
+          "Because the official Maharashtra office structure distributes the metropolitan region across multiple registration offices rather than a single city-only series.",
       },
     ],
   },
@@ -144,39 +148,39 @@ export const cityPages: CityPage[] = [
     slug: "chennai-rto-codes",
     city: "Chennai",
     stateCode: "TN",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Chennai RTO codes",
     description:
-      "Browse Chennai RTO codes across the dense TN office ladder, including central, suburban, and major cluster entries in the Chennai family.",
+      "A Chennai-focused guide to the TN registration ladder, including the central and suburban office codes most strongly associated with the city.",
     intro:
-      "Chennai is the strongest city-specific page in the current dataset because Tamil Nadu already contains a deep Chennai office sequence. That makes it a natural search-entry page for both metro users and TN-format researchers.",
+      "Chennai is one of the clearest examples of a city that occupies a deep and recognizable block inside a state registration family. Users who search Chennai registration numbers are usually trying to understand where a TN code sits within the larger city and suburban office structure.",
     readingTime: "5 min read",
     featuredCodes: ["TN-01", "TN-02", "TN-03", "TN-04", "TN-05", "TN-06", "TN-07", "TN-09", "TN-10", "TN-11", "TN-12", "TN-13", "TN-14", "TN-18", "TN-22", "TN-85"],
     sections: [
       {
-        title: "Why Chennai is a standout city page",
+        title: "Why Chennai forms a dense TN cluster",
         body: [
-          "The Chennai ladder is already dense enough that users often search the city first and then want the exact TN series for the local office or suburban cluster they have in mind.",
-          "That makes Chennai one of the clearest examples of why city-heavy landing pages help the domain grow.",
+          "Tamil Nadu uses a long registration sequence, and Chennai occupies many of the most familiar and high-traffic office blocks within that ladder. That makes city-level orientation useful because the answer is rarely just 'it is a TN plate'.",
+          "Users often want to know whether a number belongs to central Chennai, a suburban belt, or another Chennai-linked office family within the wider metropolitan region.",
         ],
       },
       {
-        title: "How to use the Chennai sequence",
+        title: "How to read Chennai-related TN numbers",
         body: [
-          "Start with the specific TN code and then compare whether it belongs to central Chennai, a suburban belt, or a later Chennai-linked office cluster. This page gives a cleaner overview before users jump into individual code pages.",
+          "Start with the exact TN code and then compare it against the Chennai office list. The city page helps users do that quickly before they move into individual code pages or the broader Tamil Nadu state directory.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Does Chennai really have that many TN office codes?",
+        question: "Does Chennai really use that many TN office codes?",
         answer:
-          "Yes. Chennai is one of the densest metro clusters in the current dataset, which is exactly why it deserves a dedicated city page.",
+          "Yes. Chennai occupies a substantial portion of the best-known Tamil Nadu office ladder, including central and suburban registration series.",
       },
       {
-        question: "Should users still check the Tamil Nadu state page?",
+        question: "Should this page be read separately from the Tamil Nadu state page?",
         answer:
-          "Yes. The city page is the fastest entry point for Chennai-heavy searches, but the TN state page gives broader sequence context across Tamil Nadu.",
+          "It is best used as a city-level shortcut. The Tamil Nadu state page still gives the wider sequence context for the full TN family.",
       },
     ],
   },
@@ -184,38 +188,38 @@ export const cityPages: CityPage[] = [
     slug: "hyderabad-rto-codes",
     city: "Hyderabad",
     stateCode: "TS",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Hyderabad RTO codes",
     description:
-      "Browse Hyderabad RTO codes across the Telangana family, with both TS and TG context for the city-linked office ladder.",
+      "A Hyderabad-focused guide to the Telangana registration ladder, including the core city codes and the TS/TG context that users commonly ask about.",
     intro:
-      "Hyderabad is one of the best metro pages for Telangana because it combines strong city recognition with the extra TS versus TG question that users already bring into the lookup.",
+      "Hyderabad registration lookups often involve two questions at once: which city office family the number belongs to and whether TS or TG should be expected. A useful city page therefore needs to explain both the office ladder and the ongoing user confusion around the state mark.",
     readingTime: "4 min read",
     featuredCodes: ["TS-09", "TS-10", "TS-11", "TS-12", "TS-13"],
     sections: [
       {
-        title: "Why Hyderabad needs a separate page",
+        title: "How the Hyderabad office ladder is grouped",
         body: [
-          "Users often search Hyderabad directly, not Telangana first. At the same time, the city is where the TS-versus-TG confusion becomes most visible because these codes show up so often in the real world.",
+          "In the current Telangana dataset, Hyderabad is grouped through central, east, north, south, and west office entries. That makes the city page a practical orientation tool for users who already know the plate is Hyderabad-linked but need the office context.",
         ],
       },
       {
-        title: "How to interpret the city ladder",
+        title: "Why TS and TG both matter here",
         body: [
-          "The Hyderabad sequence in the current dataset is organized into central, east, north, south, and west entries. The metro page groups those together so users can understand the city family at a glance.",
+          "Hyderabad is where the state-mark question becomes especially visible because the city has high plate visibility and high search volume. Users still encounter TS on existing vehicles, while TG now appears in newer references. The city page therefore keeps both signals in view.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Why does this page still show TS if TG is now relevant too?",
-        answer:
-          "Because users still encounter TS on real vehicles, while TG matters for newer references. The city page keeps both in view so the lookup remains practical.",
-      },
-      {
         question: "Which Hyderabad codes are grouped here?",
         answer:
-          "This page groups the Hyderabad-linked TS-09 through TS-13 office ladder in the current dataset.",
+          "This page groups the Hyderabad-linked TS-09 through TS-13 entries in the current live dataset.",
+      },
+      {
+        question: "Why does the page reference both TS and TG?",
+        answer:
+          "Because users continue to see TS on existing vehicles while TG is relevant in newer state references. Both matter in real-world lookups.",
       },
     ],
   },
@@ -223,39 +227,38 @@ export const cityPages: CityPage[] = [
     slug: "kolkata-rto-codes",
     city: "Kolkata",
     stateCode: "WB",
-    eyebrow: "Metro directory",
+    eyebrow: "Metro guide",
     title: "Kolkata RTO codes",
     description:
-      "A Kolkata-focused entry point into the West Bengal registration family, highlighting the PVD Kolkata registration series in the official-safe mapping.",
+      "A Kolkata-focused guide to the West Bengal registration family, with the PVD Kolkata series grouped together for quick city-level lookup.",
     intro:
-      "Kolkata is still worth a metro landing page even with a lighter current mapping because users often search for the city explicitly and expect a direct answer rather than a generic West Bengal directory.",
+      "Kolkata registrations are best understood through the PVD Kolkata series rather than through a single city row. Users who search Kolkata usually want the quickest possible answer to whether a number belongs to the city registration family before they move deeper into the West Bengal office structure.",
     readingTime: "3 min read",
     featuredCodes: ["WB-01", "WB-02", "WB-03", "WB-04", "WB-05", "WB-06", "WB-07"],
     sections: [
       {
-        title: "Why Kolkata is still a strong city page",
+        title: "How Kolkata appears in the official West Bengal structure",
         body: [
-          "Search behavior is city-first, and the official-safe West Bengal mapping actually groups a dedicated PVD Kolkata series rather than a single generic Kolkata district row.",
-          "A dedicated page still captures that intent far better than burying the answer inside a broader state directory.",
+          "In the official-safe West Bengal mapping used by the site, Kolkata is represented through the PVD Kolkata registration series rather than a single generic city label. That is a more accurate way to understand how Kolkata fits inside the WB registration family.",
         ],
       },
       {
-        title: "What this page is best for",
+        title: "How to use this page",
         body: [
-          "Use it as the shortest route from a Kolkata query into the wider West Bengal code family and then into code-specific pages.",
+          "Use this page to establish whether a plate belongs to the Kolkata registration family. After that, the next useful step is the exact code page or the wider West Bengal directory if the number falls outside the city series.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Which Kolkata code is surfaced here?",
+        question: "Which Kolkata codes are shown on this page?",
         answer:
-          "The current official-safe mapping groups Kolkata under the PVD Kolkata series from WB-01 through WB-07.",
+          "The page groups the PVD Kolkata series from WB-01 through WB-07 in the current official-safe mapping.",
       },
       {
-        question: "Why is Kolkata lighter than Chennai or Delhi?",
+        question: "Why is Kolkata shown as a series instead of a single code?",
         answer:
-          "Because the current dataset remains denser and more city-segmented for Chennai and Delhi than it does for Kolkata, even after correcting the West Bengal office model.",
+          "Because the official West Bengal office structure groups Kolkata through multiple registration marks rather than a single standalone city code.",
       },
     ],
   },

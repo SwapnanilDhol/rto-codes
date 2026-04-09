@@ -148,11 +148,11 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
         <section className="mt-8 rounded-[28px] border border-amber-300 bg-amber-50 p-7 dark:border-amber-400/20 dark:bg-amber-400/8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-700 dark:text-amber-300/80">
-            Why this matters
+            Practical takeaway
           </p>
           <p className="mt-3 text-[15px] leading-8 text-amber-950/85 dark:text-amber-50/88">
-            This guide is part of the next expansion layer for RTO.codes: moving from a useful lookup into a durable
-            vehicle-registration reference brand with strong organic search entry points.
+            Use this guide to understand the registration concept clearly first, then move to the relevant state page,
+            code page, or official transport workflow with the correct context already in hand.
           </p>
         </section>
 

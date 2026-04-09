@@ -62,8 +62,8 @@ export default function ServicesPage() {
             Vehicle admin workflows beyond the lookup
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-600 dark:text-slate-300">
-            These pages expand the domain from code lookup into the practical workflows users actually care about next:
-            HSRP, transfer, toll-readiness, insurance, PUC, and document compliance.
+            These pages cover the practical workflows that usually come after a registration lookup: HSRP, ownership
+            transfer, toll-readiness, insurance, PUC, and basic vehicle document checks.
           </p>
         </header>
 

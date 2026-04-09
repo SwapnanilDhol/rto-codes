@@ -35,11 +35,11 @@ export default function GuidesPage() {
             Reference guides
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-            Grow RTO.codes beyond a lookup.
+            Vehicle registration guides for India
           </h1>
           <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
-            This is the first content layer for the domain: evergreen guides around Indian vehicle registration,
-            number plate formats, HSRP, BH series, and practical RTO lookup questions.
+            Browse practical guides on Indian number plate formats, HSRP, BH registration, special plate categories,
+            and the most common questions users ask when decoding a vehicle registration number.
           </p>
         </div>
 

@@ -289,16 +289,16 @@ export default async function StatePage({ params }: StatePageProps) {
         </section>
 
         <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white/72 p-7 dark:border-white/10 dark:bg-white/[0.04]">
-          <h2 className="text-2xl font-semibold tracking-[-0.03em]">Why this state page exists</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.03em]">How to use this state page</h2>
           <div className="mt-4 grid gap-4">
             <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
-              The state landing page gives RTO.codes an SEO surface that sits between the homepage and future office-level
-              pages. Users can land here from search, understand the prefix family quickly, and move into the live lookup
-              or deeper guides.
+              Start with the state prefix and sample code list to understand how the registration family is structured.
+              Then move to the exact code page if you already know the office number, or use the related guides if the
+              question is about format, HSRP, or a state-specific rule change.
             </p>
             <p className="text-[15px] leading-8 text-slate-600 dark:text-slate-300">
-              This is also the right place to grow state-specific compliance notes, HSRP links, transfer guidance, and
-              eventually code-level pages for important office series.
+              The yellow note on this page highlights the detail most likely to confuse users in that state, such as a
+              legacy mark, a renamed prefix, or an office structure that does not map neatly to district boundaries.
             </p>
           </div>
         </section>
