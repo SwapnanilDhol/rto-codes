@@ -110,6 +110,7 @@ export default function Home() {
   }, [query, states]);
 
   const selectedState = selectedStateCode ? stateByCode.get(selectedStateCode) ?? null : null;
+  const isSearching = query.trim().length > 0;
 
   const filteredEntries = useMemo(() => {
     if (!selectedState) return [];
@@ -390,6 +391,28 @@ export default function Home() {
                     : "text-slate-900 placeholder:text-slate-400"
                 }`}
               />
+              {isSearching ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className={`cursor-pointer rounded-full p-1 transition ${
+                    theme === "dark"
+                      ? "text-slate-400 hover:bg-white/[0.06] hover:text-white"
+                      : "text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                  }`}
+                  aria-label="Clear search"
+                  title="Clear search"
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.8}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              ) : null}
             </div>
 
             {sidebarView === "browse" ? (
@@ -432,32 +455,38 @@ export default function Home() {
                   exit="exit"
                   transition={sidebarTransition}
                 >
-                  {query.trim() ? (
+                  {isSearching ? (
                     <>
                       <p className={`px-1 pb-2 text-[10px] font-semibold uppercase tracking-[0.24em] ${mutedLabelClass}`}>
                         Search results
                       </p>
-                      <div className="space-y-2">
-                        {filteredStates.map((state) => (
-                          <button
-                            key={state.code}
-                            onClick={() => handleStateSelect(state.code)}
-                            className={`cursor-pointer w-full rounded-[18px] border px-4 py-3 text-left transition duration-200 ${
-                              selectedState?.code === state.code ? selectedClass : idleClass
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-3">
-                              <div className="min-w-0">
-                                <p className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${mutedLabelClass}`}>
-                                  {state.code === "TS" ? "TS / TG" : state.code}
-                                </p>
-                                <p className="mt-1 truncate text-sm font-medium">{state.name}</p>
+                      {filteredStates.length > 0 ? (
+                        <div className="space-y-2">
+                          {filteredStates.map((state) => (
+                            <button
+                              key={state.code}
+                              onClick={() => handleStateSelect(state.code)}
+                              className={`cursor-pointer w-full rounded-[18px] border px-4 py-3 text-left transition duration-200 ${
+                                selectedState?.code === state.code ? selectedClass : idleClass
+                              }`}
+                            >
+                              <div className="flex items-center justify-between gap-3">
+                                <div className="min-w-0">
+                                  <p className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${mutedLabelClass}`}>
+                                    {state.code === "TS" ? "TS / TG" : state.code}
+                                  </p>
+                                  <p className="mt-1 truncate text-sm font-medium">{state.name}</p>
+                                </div>
+                                <span className={`text-xs ${mutedLabelClass}`}>{state.entries.length}</span>
                               </div>
-                              <span className={`text-xs ${mutedLabelClass}`}>{state.entries.length}</span>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className={`rounded-[16px] border px-3 py-3 text-sm ${cardClass}`}>
+                          No results found.
+                        </div>
+                      )}
                     </>
                   ) : (
                     <>
@@ -594,33 +623,36 @@ export default function Home() {
                       </p>
                       <p className={`mt-1 text-sm font-medium ${mutedTextClass}`}>
                         {selectedState?.code}
-                        {selectedState?.code === "TS" ? " / TG" : ""} • {filteredEntries.length} visible codes
+                        {selectedState?.code === "TS" ? " / TG" : ""} • {filteredEntries.length}{" "}
+                        {isSearching ? "matching codes" : "visible codes"}
                       </p>
                     </div>
-                    <a
-                      href="https://forms.gle/2kz7DHf2uMvrm6H59"
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() =>
-                        trackEvent("click_report_issue", {
-                          state_code: selectedState?.code,
-                        })
-                      }
-                      className={`cursor-pointer inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium transition duration-200 ${idleClass}`}
-                    >
-                      <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.8}
-                          d="M12 9v3.75m0 3.75h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      Report issue
-                    </a>
+                    {!isSearching ? (
+                      <a
+                        href="https://forms.gle/2kz7DHf2uMvrm6H59"
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() =>
+                          trackEvent("click_report_issue", {
+                            state_code: selectedState?.code,
+                          })
+                        }
+                        className={`cursor-pointer inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium transition duration-200 ${idleClass}`}
+                      >
+                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.8}
+                            d="M12 9v3.75m0 3.75h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        Report issue
+                      </a>
+                    ) : null}
                   </div>
 
-                  {selectedState ? (
+                  {!isSearching && selectedState ? (
                     <Link
                       href={getStateUrl({ name: selectedState.name })}
                       className={`mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium transition duration-200 ${idleClass}`}
@@ -637,7 +669,7 @@ export default function Home() {
                     </Link>
                   ) : null}
 
-                  {stateNote ? (
+                  {!isSearching && stateNote ? (
                     <div
                       className={`mt-4 rounded-[18px] border px-3.5 py-3 ${
                         theme === "dark"
@@ -692,6 +724,7 @@ export default function Home() {
                     </div>
                   ) : null}
 
+                  {!isSearching ? (
                     <a
                       href={wikiUrl}
                       target="_blank"
@@ -754,18 +787,21 @@ export default function Home() {
                           `${selectedState?.name} has ${selectedState?.entries.length} registration codes in the current dataset.`}
                     </p>
                   </a>
+                  ) : null}
 
-                  <div className="mt-3">
-                    <IndianPlate
-                      primaryCode={previewPrimaryCode}
-                      alternateCode={previewAlternateCode}
-                    />
-                  </div>
+                  {!isSearching ? (
+                    <div className="mt-3">
+                      <IndianPlate
+                        primaryCode={previewPrimaryCode}
+                        alternateCode={previewAlternateCode}
+                      />
+                    </div>
+                  ) : null}
 
                   <div className="mt-4">
                     <div className="flex items-center justify-between gap-3 pb-3">
                       <p className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${mutedLabelClass}`}>
-                        All codes
+                        {isSearching ? "Search results" : "All codes"}
                       </p>
                       <span className={`text-xs font-medium ${mutedTextClass}`}>{filteredEntries.length}</span>
                     </div>
@@ -807,7 +843,7 @@ export default function Home() {
                     </div>
                     {filteredEntries.length === 0 ? (
                       <div className={`mt-2 rounded-[16px] border px-3 py-3 text-sm ${cardClass}`}>
-                        No matching codes in {selectedState?.name}.
+                        No results found.
                       </div>
                     ) : null}
                   </div>
@@ -821,7 +857,6 @@ export default function Home() {
           <RTOMap
             data={indiaStatesGeoJSON}
             selectedRTO={selectedFeature}
-            onRTOClick={handleMapSelect}
             onRTOHover={handleMapHover}
             onRTOSelect={handleMapSelect}
             theme={theme}

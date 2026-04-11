@@ -79,6 +79,7 @@ function RTOMap({
       : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png";
 
   const geoJsonRef = useRef<L.GeoJSON | null>(null);
+  const selectedFeatureIdRef = useRef<string | null>(selectedRTO?.properties.id ?? null);
 
   const featureStyle = useMemo(
     () => ({
@@ -141,7 +142,11 @@ function RTOMap({
   };
 
   const isFeatureSelected = (feature: RTOFeature) =>
-    selectedRTO?.properties.id === feature.properties.id;
+    selectedFeatureIdRef.current === feature.properties.id;
+
+  useEffect(() => {
+    selectedFeatureIdRef.current = selectedRTO?.properties.id ?? null;
+  }, [selectedRTO]);
 
   useEffect(() => {
     const layerGroup = geoJsonRef.current;

@@ -1,9 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SiteNav from "@/components/SiteNav";
 import { absoluteOgImageUrl, absoluteTwitterImageUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
+
+const themeInitScript = `
+  try {
+    var storedTheme = localStorage.getItem("rto-theme");
+    var resolvedTheme = storedTheme === "dark" || storedTheme === "light"
+      ? storedTheme
+      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+    document.documentElement.dataset.theme = resolvedTheme;
+  } catch (error) {}
+`;
 
 export const viewport: Viewport = {
   colorScheme: "dark light",
@@ -81,6 +93,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <meta property="og:logo" content={logoUrl} />
       </head>
       <body className="h-full antialiased">
