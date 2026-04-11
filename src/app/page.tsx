@@ -171,6 +171,7 @@ export default function Home() {
   const selectedDistrictFeature = selectedDistrictId
     ? upDistrictById.get(selectedDistrictId) ?? null
     : null;
+  const hasSelectedUpDistrict = isUpDistrictMode && !!selectedDistrictFeature;
 
   const upDistrictFeatureByCanonicalName = useMemo(
     () =>
@@ -360,7 +361,7 @@ export default function Home() {
   );
 
   const handleMapHover = useCallback((feature: RTOFeature | null, pointer?: { x: number; y: number }) => {
-    if (!feature?.properties.code || !pointer) {
+    if (!feature || !pointer) {
       setHoveredState(null);
       return;
     }
@@ -377,7 +378,7 @@ export default function Home() {
       title: feature.properties.name,
       subtitle:
         feature.properties.state === "Uttar Pradesh" && feature.properties.censusCode
-          ? "Uttar Pradesh district"
+          ? "Uttar Pradesh district - tap to zoom"
           : `${feature.properties.code === "TS" ? "TG / TS" : feature.properties.code} • ${
               stateByCode.get(feature.properties.code ?? "")?.entries.length ?? 0
             } codes`,
@@ -776,7 +777,7 @@ export default function Home() {
                         </div>
                       ) : null}
                     </div>
-                    {!isSearching ? (
+                    {!isSearching && !hasSelectedUpDistrict ? (
                       <a
                         href="https://forms.gle/2kz7DHf2uMvrm6H59"
                         target="_blank"
@@ -801,7 +802,7 @@ export default function Home() {
                     ) : null}
                   </div>
 
-                  {!isSearching && selectedState ? (
+                  {!isSearching && selectedState && !hasSelectedUpDistrict ? (
                     <Link
                       href={getStateUrl({ name: selectedState.name })}
                       className={`mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-xs font-medium transition duration-200 ${idleClass}`}
@@ -818,7 +819,7 @@ export default function Home() {
                     </Link>
                   ) : null}
 
-                  {!isSearching && stateNote ? (
+                  {!isSearching && stateNote && !hasSelectedUpDistrict ? (
                     <div
                       className={`mt-4 rounded-[18px] border px-3.5 py-3 ${
                         theme === "dark"
@@ -873,7 +874,31 @@ export default function Home() {
                     </div>
                   ) : null}
 
-                  {!isSearching ? (
+                  {hasSelectedUpDistrict ? (
+                    <div
+                      className={`mt-4 rounded-[18px] border px-4 py-3 ${
+                        theme === "dark"
+                          ? "border-sky-400/20 bg-sky-400/10"
+                          : "border-sky-200 bg-sky-50"
+                      }`}
+                    >
+                      <p
+                        className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${
+                          theme === "dark" ? "text-sky-300/80" : "text-sky-700"
+                        }`}
+                      >
+                        Selected district
+                      </p>
+                      <p className="mt-1 text-base font-semibold tracking-[-0.02em]">
+                        {selectedDistrictFeature?.properties.name}
+                      </p>
+                      <p className={`mt-1 text-sm ${mutedTextClass}`}>
+                        {filteredEntries.length} matching {filteredEntries.length === 1 ? "code" : "codes"}
+                      </p>
+                    </div>
+                  ) : null}
+
+                  {!isSearching && !hasSelectedUpDistrict ? (
                     <a
                       href={wikiUrl}
                       target="_blank"
@@ -938,7 +963,7 @@ export default function Home() {
                   </a>
                   ) : null}
 
-                  {!isSearching ? (
+                  {!isSearching && !hasSelectedUpDistrict ? (
                     <div className="mt-3">
                       <IndianPlate
                         primaryCode={previewPrimaryCode}
