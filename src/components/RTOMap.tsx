@@ -212,6 +212,7 @@ function RTOMap({
       style={{ minHeight: "100%", minWidth: "100%" }}
     >
       <TileLayer
+        key={theme}
         attribution=""
         url={tileUrl}
         subdomains="abcd"
