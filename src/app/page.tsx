@@ -13,6 +13,7 @@ import { featuredPosts, getPostsByState } from "@/data/posts";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { indiaStatesGeoJSON } from "@/data/loader";
 import { indiaDistrictsGeoJSON } from "@/data/datameet/districts-loader";
+import { telanganaDistrictsGeoJSON } from "@/data/telangana-loader";
 import { RTOFeature, RTOGeoJSON } from "@/types/rto";
 
 const RTOMap = dynamic(() => import("@/components/RTOMap"), {
@@ -86,25 +87,27 @@ function canonicalizeDistrictName(stateCode: string, value: string) {
       "chitrakoot": "chitrakoot dham",
     },
     TS: {
-      "mahaboobnagar": "mahbubnagar",
+      "mahaboobnagar": "mahabubnagar",
+      "mahbubnagar": "mahabubnagar",
       "ranga reddy": "rangareddy",
       "hyderabad central": "hyderabad",
       "hyderabad east": "hyderabad",
       "hyderabad north": "hyderabad",
       "hyderabad south": "hyderabad",
       "hyderabad west": "hyderabad",
-      "warangal urban": "warangal",
+      "warangal urban": "hanumakonda",
       "warangal rural": "warangal",
-      "rajanna": "karimnagar",
-      "jayashankar": "warangal",
-      "jangoan": "warangal",
-      "bhadradri": "khammam",
-      "yadadri": "nalgonda",
-      "jogulamba": "mahbubnagar",
-      "medchal": "rangareddy",
-      "siddipet": "medak",
-      "wanaparthy": "mahbubnagar",
-      "mahabubabad": "warangal",
+      "rajanna": "rajanna sircilla",
+      "jayashankar": "jayashankar bhupalpally",
+      "jangoan": "jangaon",
+      "bhadradri": "bhadradri kothagudem",
+      "yadadri": "yadadri bhuvanagiri",
+      "jogulamba": "jogulamba gadwal",
+      "medchal": "medchal malkajgiri",
+      "siddipet": "siddipet",
+      "wanaparthy": "wanaparthy",
+      "mahabubabad": "mahabubabad",
+      "komaram bheem": "kumurambheem asifabad",
     },
   };
 
@@ -185,8 +188,18 @@ export default function Home() {
   const districtFeatureStateName = districtModeStateCode === "TS" ? "Andhra Pradesh" : "Uttar Pradesh";
 
   const districtFeatures = useMemo(
-    () =>
-      indiaDistrictsGeoJSON.features.filter(
+    () => {
+      if (districtModeStateCode === "TS") {
+        return telanganaDistrictsGeoJSON.features.filter((feature) =>
+          districtModeEntries.some(
+            (entry) =>
+              canonicalizeDistrictName("TS", entry.district) ===
+              canonicalizeDistrictName("TS", feature.properties.name)
+          )
+        );
+      }
+
+      return indiaDistrictsGeoJSON.features.filter(
         (feature) =>
           feature.properties.state === districtFeatureStateName &&
           (!districtModeStateCode ||
@@ -195,7 +208,8 @@ export default function Home() {
                 canonicalizeDistrictName(districtModeStateCode, entry.district) ===
                 canonicalizeDistrictName(districtModeStateCode, feature.properties.name)
             ))
-      ),
+      );
+    },
     [districtFeatureStateName, districtModeEntries, districtModeStateCode]
   );
 
