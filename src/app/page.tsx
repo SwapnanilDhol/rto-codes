@@ -172,6 +172,17 @@ export default function Home() {
     ? upDistrictById.get(selectedDistrictId) ?? null
     : null;
 
+  const upDistrictFeatureByCanonicalName = useMemo(
+    () =>
+      new Map(
+        upDistrictFeatures.map((feature) => [
+          canonicalizeUpDistrictName(feature.properties.name),
+          feature,
+        ])
+      ),
+    [upDistrictFeatures]
+  );
+
   const filteredEntries = useMemo(() => {
     if (!selectedState) return [];
 
@@ -215,6 +226,23 @@ export default function Home() {
   const selectedMapFeature = isUpDistrictMode
     ? selectedDistrictFeature ?? selectedFeature
     : selectedFeature;
+
+  const handleDistrictEntrySelect = useCallback(
+    (districtName: string) => {
+      if (!isUpDistrictMode) return;
+      const feature = upDistrictFeatureByCanonicalName.get(
+        canonicalizeUpDistrictName(districtName)
+      );
+      if (!feature) return;
+      setSelectedDistrictId(feature.properties.id);
+      trackEvent("select_up_district", {
+        state_code: "UP",
+        district_name: feature.properties.name,
+        source: "sidebar",
+      });
+    },
+    [isUpDistrictMode, upDistrictFeatureByCanonicalName]
+  );
 
   const popularStates = useMemo(
     () => filteredStates.filter((state) => POPULAR_STATE_CODES.includes(state.code)),
@@ -928,7 +956,18 @@ export default function Home() {
                     </div>
                     <div className="grid gap-2">
                       {filteredEntries.map((entry) => (
-                        <div key={entry.id} className={`rounded-[16px] border px-3 py-2.5 ${cardClass}`}>
+                        <button
+                          key={entry.id}
+                          type="button"
+                          onClick={() => {
+                            if (isUpDistrictMode) {
+                              handleDistrictEntrySelect(entry.district);
+                            }
+                          }}
+                          className={`w-full rounded-[16px] border px-3 py-2.5 text-left ${
+                            isUpDistrictMode ? `cursor-pointer transition duration-200 ${idleClass}` : cardClass
+                          }`}
+                        >
                           <div className="flex items-start justify-between gap-3">
                             <div>
                               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-500">
@@ -955,7 +994,7 @@ export default function Home() {
                               </div>
                             ) : null}
                           </div>
-                        </div>
+                        </button>
                       ))}
                     </div>
                     {filteredEntries.length === 0 ? (
@@ -977,6 +1016,7 @@ export default function Home() {
             onRTOHover={handleMapHover}
             onRTOSelect={handleMapSelect}
             theme={theme}
+            detailLevel={isUpDistrictMode ? "district" : "state"}
           />
           {hoveredState ? (
             <div

@@ -17,6 +17,7 @@ interface RTOMapProps {
   onRTOSelect?: (rto: RTOFeature | null) => void;
   selectedRTO?: RTOFeature | null;
   theme?: "dark" | "light";
+  detailLevel?: "state" | "district";
 }
 
 const INDIA_BOUNDS: LatLngBoundsExpression = [
@@ -72,6 +73,7 @@ function RTOMap({
   onRTOSelect,
   selectedRTO,
   theme = "dark",
+  detailLevel = "state",
 }: RTOMapProps) {
   const tileUrl =
     theme === "dark"
@@ -86,53 +88,53 @@ function RTOMap({
       base:
         theme === "dark"
           ? {
-              color: "#475569",
-              weight: 1,
-              opacity: 0.76,
+              color: detailLevel === "district" ? "#64748b" : "#475569",
+              weight: detailLevel === "district" ? 1.25 : 1,
+              opacity: detailLevel === "district" ? 0.9 : 0.76,
               fillColor: "#0b1220",
-              fillOpacity: 0.34,
+              fillOpacity: detailLevel === "district" ? 0.24 : 0.34,
             }
           : {
-              color: "#cbd5e1",
-              weight: 1,
-              opacity: 0.86,
+              color: detailLevel === "district" ? "#94a3b8" : "#cbd5e1",
+              weight: detailLevel === "district" ? 1.25 : 1,
+              opacity: detailLevel === "district" ? 0.95 : 0.86,
               fillColor: "#eef2f7",
-              fillOpacity: 0.58,
+              fillOpacity: detailLevel === "district" ? 0.38 : 0.58,
             },
       hover:
         theme === "dark"
           ? {
               color: "#93c5fd",
-              weight: 1.4,
+              weight: detailLevel === "district" ? 1.8 : 1.4,
               opacity: 0.96,
               fillColor: "#2563eb",
-              fillOpacity: 0.2,
+              fillOpacity: detailLevel === "district" ? 0.26 : 0.2,
             }
           : {
               color: "#60a5fa",
-              weight: 1.4,
+              weight: detailLevel === "district" ? 1.8 : 1.4,
               opacity: 0.92,
               fillColor: "#60a5fa",
-              fillOpacity: 0.16,
+              fillOpacity: detailLevel === "district" ? 0.22 : 0.16,
             },
       selected:
         theme === "dark"
           ? {
               color: "#dbeafe",
-              weight: 1.8,
+              weight: detailLevel === "district" ? 2.2 : 1.8,
               opacity: 0.98,
               fillColor: "#1d4ed8",
-              fillOpacity: 0.28,
+              fillOpacity: detailLevel === "district" ? 0.32 : 0.28,
             }
           : {
               color: "#1e3a8a",
-              weight: 1.8,
+              weight: detailLevel === "district" ? 2.2 : 1.8,
               opacity: 0.9,
               fillColor: "#3b82f6",
-              fillOpacity: 0.18,
+              fillOpacity: detailLevel === "district" ? 0.24 : 0.18,
             },
     }),
-    [theme]
+    [detailLevel, theme]
   );
 
   const getFeatureStyle = (feature: RTOFeature, isHovered = false, isSelected = false) => {
@@ -224,7 +226,7 @@ function RTOMap({
       <MapController selectedRTO={selectedRTO} />
       <GeoJSON
         ref={geoJsonRef}
-        key={theme}
+        key={`${theme}-${detailLevel}`}
         data={data}
         style={(feature) => {
           const currentFeature = feature as RTOFeature;
