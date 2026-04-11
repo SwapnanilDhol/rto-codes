@@ -6,13 +6,14 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig, siteStats } from "@/lib/site";
-import { getCodeUrl, getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
+import { getStateChipLabel, getStateNote, getStateUrl, WIKI_TITLE_MAP } from "@/lib/state-content";
 import { useTheme } from "@/components/ThemeProvider";
 import IndianPlate from "@/components/IndianPlate";
 import { featuredPosts, getPostsByState } from "@/data/posts";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { indiaStatesGeoJSON } from "@/data/loader";
-import { RTOFeature } from "@/types/rto";
+import { indiaDistrictsGeoJSON } from "@/data/datameet/districts-loader";
+import { RTOFeature, RTOGeoJSON } from "@/types/rto";
 
 const RTOMap = dynamic(() => import("@/components/RTOMap"), {
   ssr: false,
@@ -42,7 +43,8 @@ type WikiSummary = {
 };
 
 type HoverOverlayState = {
-  stateCode: string;
+  title: string;
+  subtitle: string;
   x: number;
   y: number;
 };
@@ -51,12 +53,44 @@ function normalizeValue(value: string) {
   return value.toLowerCase().replace(/[\s-]/g, "");
 }
 
+function canonicalizeUpDistrictName(value: string) {
+  const normalized = value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+
+  const aliasMap: Record<string, string> = {
+    "allahabad": "prayagraj",
+    "bara banki": "barabanki",
+    "bulandshahr": "bulandshahar",
+    "budaun": "badaun",
+    "gautam buddha nagar": "gautambudhnagar",
+    "jyotiba phule nagar": "jyotibaphule nagar",
+    "kheri": "lakhimpur khiri",
+    "kushinagar": "padrauna krushi nagar",
+    "maharajganj": "mahrajganj",
+    "mahamaya nagar": "hathrash mahamaya nagar",
+    "kansiram nagar": "kanshiram nagar",
+    "rae bareli": "raebareli",
+    "sant ravi das nagar bhadohi": "bhadohi",
+    "sant ravi das nagar bhadohi ": "bhadohi",
+    "shrawasti": "shravasti",
+    "siddharth nagar": "siddharthnagar",
+    "trans gomti office lucknow": "lucknow",
+    "chitrakoot": "chitrakoot dham",
+  };
+
+  return aliasMap[normalized] ?? normalized;
+}
+
 export default function Home() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const sidebarScrollRef = useRef<HTMLDivElement | null>(null);
   const lastTrackedSearchRef = useRef("");
   const [query, setQuery] = useState("");
   const [selectedStateCode, setSelectedStateCode] = useState<string | null>(null);
+  const [selectedDistrictId, setSelectedDistrictId] = useState<string | null>(null);
   const [sidebarView, setSidebarView] = useState<"browse" | "details">("browse");
   const [sidebarDirection, setSidebarDirection] = useState<1 | -1>(1);
   const [wikiSummary, setWikiSummary] = useState<WikiSummary | null>(null);
@@ -111,13 +145,50 @@ export default function Home() {
 
   const selectedState = selectedStateCode ? stateByCode.get(selectedStateCode) ?? null : null;
   const isSearching = query.trim().length > 0;
+  const isUpDistrictMode = selectedState?.code === "UP";
+
+  const upDistrictFeatures = useMemo(
+    () =>
+      indiaDistrictsGeoJSON.features.filter(
+        (feature) => feature.properties.state === "Uttar Pradesh"
+      ),
+    []
+  );
+
+  const upDistrictMapData = useMemo<RTOGeoJSON>(
+    () => ({
+      type: "FeatureCollection",
+      features: upDistrictFeatures,
+    }),
+    [upDistrictFeatures]
+  );
+
+  const upDistrictById = useMemo(
+    () => new Map(upDistrictFeatures.map((feature) => [feature.properties.id, feature])),
+    [upDistrictFeatures]
+  );
+
+  const selectedDistrictFeature = selectedDistrictId
+    ? upDistrictById.get(selectedDistrictId) ?? null
+    : null;
 
   const filteredEntries = useMemo(() => {
     if (!selectedState) return [];
-    if (!query.trim()) return selectedState.entries;
+
+    let entries = selectedState.entries;
+    if (isUpDistrictMode && selectedDistrictFeature) {
+      const selectedDistrictName = canonicalizeUpDistrictName(
+        selectedDistrictFeature.properties.name
+      );
+      entries = entries.filter(
+        (entry) => canonicalizeUpDistrictName(entry.district) === selectedDistrictName
+      );
+    }
+
+    if (!query.trim()) return entries;
 
     const normalizedQuery = normalizeValue(query);
-    return selectedState.entries.filter((entry) => {
+    return entries.filter((entry) => {
       const alternateMatch = entry.alternateCodes.some((code) =>
         normalizeValue(code).includes(normalizedQuery)
       );
@@ -130,7 +201,7 @@ export default function Home() {
         normalizeValue(selectedState.code).includes(normalizedQuery)
       );
     });
-  }, [query, selectedState]);
+  }, [isUpDistrictMode, query, selectedDistrictFeature, selectedState]);
 
   const selectedFeature = useMemo(
     () =>
@@ -139,6 +210,11 @@ export default function Home() {
       ) ?? null,
     [selectedState]
   );
+
+  const activeMapData = isUpDistrictMode ? upDistrictMapData : indiaStatesGeoJSON;
+  const selectedMapFeature = isUpDistrictMode
+    ? selectedDistrictFeature ?? selectedFeature
+    : selectedFeature;
 
   const popularStates = useMemo(
     () => filteredStates.filter((state) => POPULAR_STATE_CODES.includes(state.code)),
@@ -226,6 +302,7 @@ export default function Home() {
   const handleStateSelect = useCallback((stateCode: string) => {
     setSidebarDirection(1);
     setSelectedStateCode(stateCode);
+    setSelectedDistrictId(null);
     setQuery("");
     setSidebarView("details");
     trackEvent("select_state", { state_code: stateCode });
@@ -233,10 +310,25 @@ export default function Home() {
 
   const handleMapSelect = useCallback(
     (feature: RTOFeature | null) => {
-      if (!feature?.properties.code) return;
+      if (!feature) return;
+
+      if (
+        isUpDistrictMode &&
+        feature.properties.state === "Uttar Pradesh" &&
+        feature.properties.censusCode
+      ) {
+        setSelectedDistrictId(feature.properties.id);
+        trackEvent("select_up_district", {
+          state_code: "UP",
+          district_name: feature.properties.name,
+        });
+        return;
+      }
+
+      if (!feature.properties.code) return;
       handleStateSelect(feature.properties.code);
     },
-    [handleStateSelect]
+    [handleStateSelect, isUpDistrictMode]
   );
 
   const handleMapHover = useCallback((feature: RTOFeature | null, pointer?: { x: number; y: number }) => {
@@ -254,11 +346,17 @@ export default function Home() {
     );
 
     setHoveredState({
-      stateCode: feature.properties.code,
+      title: feature.properties.name,
+      subtitle:
+        feature.properties.state === "Uttar Pradesh" && feature.properties.censusCode
+          ? "Uttar Pradesh district"
+          : `${feature.properties.code === "TS" ? "TG / TS" : feature.properties.code} • ${
+              stateByCode.get(feature.properties.code ?? "")?.entries.length ?? 0
+            } codes`,
       x: clampedX,
       y: clampedY,
     });
-  }, []);
+  }, [stateByCode]);
 
   const shellClass =
     theme === "dark"
@@ -300,7 +398,6 @@ export default function Home() {
     : "#";
   const stateNote = getStateNote(selectedState ?? undefined);
   const stateRule = selectedState ? getPostsByState(selectedState.code).find((p) => p.category === "state-rule") ?? null : null;
-  const hoveredStateLookup = hoveredState ? stateByCode.get(hoveredState.stateCode) : null;
   const sidebarTransition = {
     type: "spring" as const,
     stiffness: 340,
@@ -626,6 +723,30 @@ export default function Home() {
                         {selectedState?.code === "TS" ? " / TG" : ""} • {filteredEntries.length}{" "}
                         {isSearching ? "matching codes" : "visible codes"}
                       </p>
+                      {isUpDistrictMode ? (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <span
+                            className={`rounded-full border px-3 py-1.5 text-[11px] font-medium ${
+                              theme === "dark"
+                                ? "border-white/10 bg-white/[0.05] text-slate-300"
+                                : "border-slate-200 bg-slate-50 text-slate-600"
+                            }`}
+                          >
+                            {selectedDistrictFeature
+                              ? `District: ${selectedDistrictFeature.properties.name}`
+                              : "Tap a UP district on the map to zoom in"}
+                          </span>
+                          {selectedDistrictFeature ? (
+                            <button
+                              type="button"
+                              onClick={() => setSelectedDistrictId(null)}
+                              className={`cursor-pointer rounded-full border px-3 py-1.5 text-[11px] font-medium transition ${idleClass}`}
+                            >
+                              Clear district
+                            </button>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </div>
                     {!isSearching ? (
                       <a
@@ -807,11 +928,7 @@ export default function Home() {
                     </div>
                     <div className="grid gap-2">
                       {filteredEntries.map((entry) => (
-                        <Link
-                          key={entry.id}
-                          href={getCodeUrl(entry.rtoCode)}
-                          className={`rounded-[16px] border px-3 py-2.5 ${cardClass}`}
-                        >
+                        <div key={entry.id} className={`rounded-[16px] border px-3 py-2.5 ${cardClass}`}>
                           <div className="flex items-start justify-between gap-3">
                             <div>
                               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-500">
@@ -838,7 +955,7 @@ export default function Home() {
                               </div>
                             ) : null}
                           </div>
-                        </Link>
+                        </div>
                       ))}
                     </div>
                     {filteredEntries.length === 0 ? (
@@ -855,13 +972,13 @@ export default function Home() {
 
         <main className={`relative h-full ${theme === "dark" ? "bg-[#020617]" : "bg-slate-100"}`}>
           <RTOMap
-            data={indiaStatesGeoJSON}
-            selectedRTO={selectedFeature}
+            data={activeMapData}
+            selectedRTO={selectedMapFeature}
             onRTOHover={handleMapHover}
             onRTOSelect={handleMapSelect}
             theme={theme}
           />
-          {hoveredState && hoveredStateLookup ? (
+          {hoveredState ? (
             <div
               className="pointer-events-none fixed z-[450] hidden w-[214px] lg:block"
               style={{ left: hoveredState.x, top: hoveredState.y }}
@@ -887,18 +1004,15 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p
-                        className={`truncate text-sm font-semibold tracking-[-0.02em] ${
-                          theme === "dark" ? "text-white" : "text-slate-900"
-                        }`}
-                      >
-                        {hoveredStateLookup.name}
-                      </p>
-                    </div>
+                    <p
+                      className={`truncate text-sm font-semibold tracking-[-0.02em] ${
+                        theme === "dark" ? "text-white" : "text-slate-900"
+                      }`}
+                    >
+                      {hoveredState.title}
+                    </p>
                     <p className={`mt-0.5 text-[10px] font-medium ${mutedTextClass}`}>
-                      {hoveredStateLookup.code === "TS" ? "TG / TS" : hoveredStateLookup.code} •{" "}
-                      {hoveredStateLookup.entries.length} codes
+                      {hoveredState.subtitle}
                     </p>
                   </div>
                 </div>
