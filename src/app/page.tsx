@@ -12,13 +12,11 @@ import IndianPlate from "@/components/IndianPlate";
 import { featuredPosts, getPostsByState } from "@/data/posts";
 import { indiaStatesWithDistricts } from "@/data/districts";
 import { indiaStatesGeoJSON } from "@/data/loader";
-import { indiaDistrictsGeoJSON } from "@/data/datameet/districts-loader";
-import { telanganaDistrictsGeoJSON } from "@/data/telangana-loader";
 import { RTOFeature, RTOGeoJSON } from "@/types/rto";
 
 const RTOMap = dynamic(() => import("@/components/RTOMap"), {
   ssr: false,
-  loading: () => <div className="h-full w-full bg-[#020617]" />,
+  loading: () => <div className="h-full w-full" />,
 });
 
 const POPULAR_STATE_CODES = ["MH", "DL", "KA", "TN", "TS", "GJ", "UP", "WB"];
@@ -126,6 +124,7 @@ export default function Home() {
   const [wikiSummary, setWikiSummary] = useState<WikiSummary | null>(null);
   const [wikiLoading, setWikiLoading] = useState(false);
   const [hoveredState, setHoveredState] = useState<HoverOverlayState | null>(null);
+  const [districtSourceFeatures, setDistrictSourceFeatures] = useState<RTOFeature[]>([]);
 
   const states = useMemo<StateLookup[]>(
     () =>
@@ -185,32 +184,50 @@ export default function Home() {
     [districtModeStateCode, stateByCode]
   );
 
-  const districtFeatureStateName = districtModeStateCode === "TS" ? "Andhra Pradesh" : "Uttar Pradesh";
+  useEffect(() => {
+    let cancelled = false;
 
-  const districtFeatures = useMemo(
-    () => {
+    async function loadDistrictSource() {
+      if (!districtModeStateCode) {
+        setDistrictSourceFeatures([]);
+        return;
+      }
+
       if (districtModeStateCode === "TS") {
-        return telanganaDistrictsGeoJSON.features.filter((feature) =>
-          districtModeEntries.some(
-            (entry) =>
-              canonicalizeDistrictName("TS", entry.district) ===
-              canonicalizeDistrictName("TS", feature.properties.name)
+        const module = await import("@/data/telangana-loader");
+        if (!cancelled) {
+          setDistrictSourceFeatures(module.telanganaDistrictsGeoJSON.features);
+        }
+        return;
+      }
+
+      const module = await import("@/data/datameet/districts-loader");
+      if (!cancelled) {
+        setDistrictSourceFeatures(
+          module.indiaDistrictsGeoJSON.features.filter(
+            (feature) => feature.properties.state === "Uttar Pradesh"
           )
         );
       }
+    }
 
-      return indiaDistrictsGeoJSON.features.filter(
-        (feature) =>
-          feature.properties.state === districtFeatureStateName &&
-          (!districtModeStateCode ||
-            districtModeEntries.some(
-              (entry) =>
-                canonicalizeDistrictName(districtModeStateCode, entry.district) ===
-                canonicalizeDistrictName(districtModeStateCode, feature.properties.name)
-            ))
-      );
-    },
-    [districtFeatureStateName, districtModeEntries, districtModeStateCode]
+    loadDistrictSource();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [districtModeStateCode]);
+
+  const districtFeatures = useMemo(
+    () =>
+      districtSourceFeatures.filter((feature) =>
+        districtModeEntries.some(
+          (entry) =>
+            canonicalizeDistrictName(districtModeStateCode ?? "UP", entry.district) ===
+            canonicalizeDistrictName(districtModeStateCode ?? "UP", feature.properties.name)
+        )
+      ),
+    [districtModeEntries, districtModeStateCode, districtSourceFeatures]
   );
 
   const districtMapData = useMemo<RTOGeoJSON>(
@@ -230,6 +247,7 @@ export default function Home() {
     ? districtById.get(selectedDistrictId) ?? null
     : null;
   const hasSelectedDistrict = isDistrictMode && !!selectedDistrictFeature;
+  const districtMapReady = isDistrictMode && districtFeatures.length > 0;
 
   const districtFeatureByCanonicalName = useMemo(
     () =>
@@ -294,8 +312,8 @@ export default function Home() {
     [selectedState]
   );
 
-  const activeMapData = isDistrictMode ? districtMapData : indiaStatesGeoJSON;
-  const selectedMapFeature = isDistrictMode
+  const activeMapData = districtMapReady ? districtMapData : indiaStatesGeoJSON;
+  const selectedMapFeature = districtMapReady
     ? selectedDistrictFeature ?? selectedFeature
     : selectedFeature;
 
@@ -447,13 +465,13 @@ export default function Home() {
     setHoveredState({
       title: feature.properties.name,
       subtitle:
-        isDistrictMode && feature.properties.censusCode
+        districtMapReady && feature.properties.censusCode
           ? `${selectedState?.name} district - tap to zoom`
           : `${feature.properties.code === "TS" ? "TG / TS" : feature.properties.code} • ${
               stateByCode.get(feature.properties.code ?? "")?.entries.length ?? 0
             } codes`,
       codes:
-        isDistrictMode && feature.properties.censusCode
+        districtMapReady && feature.properties.censusCode
           ? getDistrictEntries(feature.properties.name)
               .flatMap((entry) => [entry.rtoCode, ...entry.alternateCodes])
               .slice(0, 6)
@@ -461,7 +479,7 @@ export default function Home() {
       x: clampedX,
       y: clampedY,
     });
-  }, [getDistrictEntries, isDistrictMode, selectedState?.name, stateByCode]);
+  }, [districtMapReady, getDistrictEntries, selectedState?.name, stateByCode]);
 
   const shellClass =
     theme === "dark"
@@ -483,8 +501,8 @@ export default function Home() {
     theme === "dark"
       ? "border-white/8 bg-white/[0.035] hover:-translate-y-0.5 hover:bg-white/[0.055] hover:border-white/14"
       : "border-slate-200/80 bg-white/74 hover:-translate-y-0.5 hover:bg-white/88 hover:border-slate-300/80";
-  const mutedLabelClass = theme === "dark" ? "text-slate-500" : "text-slate-400";
-  const mutedTextClass = theme === "dark" ? "text-slate-400" : "text-slate-500";
+  const mutedLabelClass = theme === "dark" ? "text-slate-500" : "text-slate-600";
+  const mutedTextClass = theme === "dark" ? "text-slate-400" : "text-slate-700";
   const sectionBorderClass = theme === "dark" ? "border-white/10" : "border-slate-200";
   const cardClass =
     theme === "dark"
@@ -834,12 +852,14 @@ export default function Home() {
                             className={`rounded-full border px-3 py-1.5 text-[11px] font-medium ${
                               theme === "dark"
                                 ? "border-white/10 bg-white/[0.05] text-slate-300"
-                                : "border-sky-200 bg-sky-50 text-sky-900"
+                                : "border-sky-300 bg-sky-100 text-sky-950"
                             }`}
                           >
                             {selectedDistrictFeature
                               ? `District: ${selectedDistrictFeature.properties.name}`
-                              : `Tap a ${selectedState?.code === "TS" ? "TS/TG" : "UP"} district on the map to zoom in`}
+                              : districtMapReady
+                                ? `Tap a ${selectedState?.code === "TS" ? "TS/TG" : "UP"} district on the map to zoom in`
+                                : "Loading district boundaries..."}
                           </span>
                           {selectedDistrictFeature ? (
                             <button
@@ -955,12 +975,12 @@ export default function Home() {
                       className={`mt-4 rounded-[18px] border px-4 py-3 ${
                         theme === "dark"
                           ? "border-sky-400/20 bg-sky-400/10"
-                          : "border-sky-200 bg-sky-50/90"
+                          : "border-sky-300 bg-sky-100"
                       }`}
                     >
                       <p
                         className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${
-                          theme === "dark" ? "text-sky-300/80" : "text-sky-800"
+                          theme === "dark" ? "text-sky-300/80" : "text-sky-900"
                         }`}
                       >
                         Selected district
@@ -1086,7 +1106,7 @@ export default function Home() {
                                     className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${
                                       theme === "dark"
                                         ? "border-white/10 bg-white/[0.04] text-slate-300"
-                                        : "border-slate-200 bg-white text-slate-500"
+                                        : "border-slate-300 bg-white text-slate-700"
                                     }`}
                                   >
                                     {code}
@@ -1117,7 +1137,7 @@ export default function Home() {
             onRTOHover={handleMapHover}
             onRTOSelect={handleMapSelect}
             theme={theme}
-            detailLevel={isDistrictMode ? "district" : "state"}
+            detailLevel={districtMapReady ? "district" : "state"}
           />
           {hoveredState ? (
             <div
@@ -1163,7 +1183,7 @@ export default function Home() {
                             className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${
                               theme === "dark"
                                 ? "border-white/10 bg-white/[0.05] text-slate-200"
-                                : "border-sky-200 bg-sky-50 text-sky-900"
+                                : "border-sky-300 bg-sky-100 text-sky-950"
                             }`}
                           >
                             {code}

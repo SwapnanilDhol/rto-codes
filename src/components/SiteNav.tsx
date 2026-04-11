@@ -12,14 +12,24 @@ const navLinks = [
 
 export default function SiteNav() {
   const { theme, toggleTheme } = useTheme();
+  const navClass =
+    theme === "dark"
+      ? "border-white/10 bg-[#020617]/95"
+      : "border-slate-200/70 bg-white/90";
+  const brandClass = theme === "dark" ? "text-white" : "text-slate-950";
+  const linkClass =
+    theme === "dark"
+      ? "text-slate-400 hover:bg-white/[0.05] hover:text-white"
+      : "text-slate-700 hover:bg-slate-100 hover:text-slate-950";
+  const buttonClass =
+    theme === "dark"
+      ? "text-slate-400 hover:bg-white/[0.05] hover:text-white"
+      : "text-slate-700 hover:bg-slate-100 hover:text-slate-950";
 
   return (
-    <nav className="flex w-full items-center justify-between border-b border-slate-200/60 bg-white/80 px-6 py-3 dark:border-white/10 dark:bg-white/[0.02]">
+    <nav className={`flex w-full items-center justify-between border-b px-6 py-3 ${navClass}`}>
       <div className="flex w-full items-center justify-between gap-6">
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-tight text-slate-900 dark:text-white"
-        >
+        <Link href="/" className={`text-sm font-semibold tracking-tight ${brandClass}`}>
           RTO.codes
         </Link>
         <div className="flex items-center gap-1">
@@ -27,7 +37,7 @@ export default function SiteNav() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.05] dark:hover:text-white"
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${linkClass}`}
             >
               {link.label}
             </Link>
@@ -36,7 +46,7 @@ export default function SiteNav() {
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             title={theme === "dark" ? "Light mode" : "Dark mode"}
-            className="ml-2 rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-white/[0.05] dark:hover:text-white"
+            className={`ml-2 rounded-full p-2 transition ${buttonClass}`}
           >
             {theme === "dark" ? (
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
