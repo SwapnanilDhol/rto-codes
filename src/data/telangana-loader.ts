@@ -1,5 +1,5 @@
 import { RTOFeature, RTOGeoJSON } from "@/types/rto";
-import rawData from "./telangana-districts.json";
+import rawData from "./telangana-districts-lite.json";
 
 type RawTelanganaFeature = {
   type: "Feature";

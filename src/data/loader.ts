@@ -1,5 +1,5 @@
 import { RTOGeoJSON, RTOFeature } from "@/types/rto";
-import rawData from "./datameet/india-states.json";
+import rawData from "./india-states-lite.json";
 
 export function loadIndiaStates(): RTOGeoJSON {
   const datameet = rawData as { type: string; features: Array<{ type: string; properties: { ST_NM: string }; geometry: any }> };

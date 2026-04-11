@@ -201,13 +201,9 @@ export default function Home() {
         return;
       }
 
-      const module = await import("@/data/datameet/districts-loader");
+      const module = await import("@/data/up-loader");
       if (!cancelled) {
-        setDistrictSourceFeatures(
-          module.indiaDistrictsGeoJSON.features.filter(
-            (feature) => feature.properties.state === "Uttar Pradesh"
-          )
-        );
+        setDistrictSourceFeatures(module.upDistrictsGeoJSON.features);
       }
     }
 

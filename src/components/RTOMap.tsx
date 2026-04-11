@@ -77,8 +77,8 @@ function RTOMap({
 }: RTOMapProps) {
   const tileUrl =
     theme === "dark"
-      ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
-      : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png";
+      ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png"
+      : "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png";
 
   const geoJsonRef = useRef<L.GeoJSON | null>(null);
   const selectedFeatureIdRef = useRef<string | null>(selectedRTO?.properties.id ?? null);
@@ -220,7 +220,7 @@ function RTOMap({
         subdomains="abcd"
         maxZoom={19}
         noWrap
-        keepBuffer={8}
+        keepBuffer={2}
         updateWhenIdle
       />
       <MapController selectedRTO={selectedRTO} />
