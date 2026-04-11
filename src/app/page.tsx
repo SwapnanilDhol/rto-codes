@@ -758,7 +758,7 @@ export default function Home() {
                             className={`rounded-full border px-3 py-1.5 text-[11px] font-medium ${
                               theme === "dark"
                                 ? "border-white/10 bg-white/[0.05] text-slate-300"
-                                : "border-slate-200 bg-slate-50 text-slate-600"
+                                : "border-sky-200 bg-sky-50 text-sky-900"
                             }`}
                           >
                             {selectedDistrictFeature
@@ -824,7 +824,7 @@ export default function Home() {
                       className={`mt-4 rounded-[18px] border px-3.5 py-3 ${
                         theme === "dark"
                           ? "border-amber-400/20 bg-amber-400/8"
-                          : "border-amber-300 bg-amber-50"
+                          : "border-amber-300 bg-amber-50/90"
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -845,14 +845,14 @@ export default function Home() {
                         <div className="min-w-0">
                           <p
                             className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${
-                              theme === "dark" ? "text-amber-300/80" : "text-amber-700"
+                              theme === "dark" ? "text-amber-300/80" : "text-amber-800"
                             }`}
                           >
                             {stateNote.eyebrow}
                           </p>
                           <p
                             className={`mt-1 text-sm leading-6 ${
-                              theme === "dark" ? "text-amber-50/88" : "text-amber-950/85"
+                              theme === "dark" ? "text-amber-50/88" : "text-amber-950"
                             }`}
                           >
                             {stateNote.text}
@@ -863,7 +863,7 @@ export default function Home() {
                               className={`mt-3 inline-flex cursor-pointer rounded-full border px-3 py-1.5 text-xs font-medium transition ${
                                 theme === "dark"
                                   ? "border-amber-300/20 bg-amber-50/5 text-amber-100 hover:border-amber-300/40"
-                                  : "border-amber-400/30 bg-white/70 text-amber-900 hover:border-amber-500"
+                                  : "border-amber-400/40 bg-white text-amber-950 hover:border-amber-500"
                               }`}
                             >
                               Read full rule page
@@ -879,20 +879,20 @@ export default function Home() {
                       className={`mt-4 rounded-[18px] border px-4 py-3 ${
                         theme === "dark"
                           ? "border-sky-400/20 bg-sky-400/10"
-                          : "border-sky-200 bg-sky-50"
+                          : "border-sky-200 bg-sky-50/90"
                       }`}
                     >
                       <p
                         className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${
-                          theme === "dark" ? "text-sky-300/80" : "text-sky-700"
+                          theme === "dark" ? "text-sky-300/80" : "text-sky-800"
                         }`}
                       >
                         Selected district
                       </p>
-                      <p className="mt-1 text-base font-semibold tracking-[-0.02em]">
+                      <p className={`mt-1 text-base font-semibold tracking-[-0.02em] ${theme === "dark" ? "text-white" : "text-slate-950"}`}>
                         {selectedDistrictFeature?.properties.name}
                       </p>
-                      <p className={`mt-1 text-sm ${mutedTextClass}`}>
+                      <p className={`mt-1 text-sm ${theme === "dark" ? mutedTextClass : "text-slate-700"}`}>
                         {filteredEntries.length} matching {filteredEntries.length === 1 ? "code" : "codes"}
                       </p>
                     </div>
