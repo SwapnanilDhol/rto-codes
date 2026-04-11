@@ -95,11 +95,11 @@ function RTOMap({
               fillOpacity: detailLevel === "district" ? 0.24 : 0.34,
             }
           : {
-              color: detailLevel === "district" ? "#94a3b8" : "#cbd5e1",
-              weight: detailLevel === "district" ? 1.25 : 1,
-              opacity: detailLevel === "district" ? 0.95 : 0.86,
+              color: detailLevel === "district" ? "#64748b" : "#cbd5e1",
+              weight: detailLevel === "district" ? 1.5 : 1,
+              opacity: detailLevel === "district" ? 1 : 0.86,
               fillColor: "#eef2f7",
-              fillOpacity: detailLevel === "district" ? 0.38 : 0.58,
+              fillOpacity: detailLevel === "district" ? 0.22 : 0.58,
             },
       hover:
         theme === "dark"
@@ -111,11 +111,11 @@ function RTOMap({
               fillOpacity: detailLevel === "district" ? 0.26 : 0.2,
             }
           : {
-              color: "#60a5fa",
-              weight: detailLevel === "district" ? 1.8 : 1.4,
-              opacity: 0.92,
+              color: "#2563eb",
+              weight: detailLevel === "district" ? 2 : 1.4,
+              opacity: 0.98,
               fillColor: "#60a5fa",
-              fillOpacity: detailLevel === "district" ? 0.22 : 0.16,
+              fillOpacity: detailLevel === "district" ? 0.16 : 0.16,
             },
       selected:
         theme === "dark"
@@ -128,10 +128,10 @@ function RTOMap({
             }
           : {
               color: "#1e3a8a",
-              weight: detailLevel === "district" ? 2.2 : 1.8,
-              opacity: 0.9,
+              weight: detailLevel === "district" ? 2.4 : 1.8,
+              opacity: 0.98,
               fillColor: "#3b82f6",
-              fillOpacity: detailLevel === "district" ? 0.24 : 0.18,
+              fillOpacity: detailLevel === "district" ? 0.14 : 0.18,
             },
     }),
     [detailLevel, theme]
